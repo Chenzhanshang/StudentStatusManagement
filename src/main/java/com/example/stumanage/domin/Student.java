@@ -1,6 +1,10 @@
-package com.example.stumanage.pojo;
+package com.example.stumanage.domin;
 
-public class Student {
+
+import java.io.Serializable;
+
+public class Student implements Serializable {
+    private static final long serialVersionUID = -1L;
     private Integer id;
     private String name;
     private String stuId;

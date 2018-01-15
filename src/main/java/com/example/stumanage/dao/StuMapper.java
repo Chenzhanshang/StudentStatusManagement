@@ -1,6 +1,6 @@
 package com.example.stumanage.dao;
 
-import com.example.stumanage.pojo.Student;
+import com.example.stumanage.domin.Student;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestParam;

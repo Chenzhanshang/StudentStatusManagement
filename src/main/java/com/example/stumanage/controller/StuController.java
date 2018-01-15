@@ -1,12 +1,10 @@
 package com.example.stumanage.controller;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
-import com.example.stumanage.pojo.Student;
+import com.example.stumanage.domin.Student;
 import com.example.stumanage.service.StuService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.io.Console;
 import java.util.List;
 
 /**

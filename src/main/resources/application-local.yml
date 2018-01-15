@@ -4,9 +4,21 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    pool:
+      max-active: 8
+      max-wait: -1
+    timeout: 0
+
+
+
 
 server:
   context-path: /stumanage
   port: 8080
+
 
 

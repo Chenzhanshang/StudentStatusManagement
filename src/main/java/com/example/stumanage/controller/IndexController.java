@@ -1,5 +1,6 @@
 package com.example.stumanage.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date: 2018/1/8  12:00
  **/
 
-
+@Slf4j
 @RequestMapping("/page")
 @Controller
 public class IndexController {
