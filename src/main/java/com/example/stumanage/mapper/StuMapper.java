@@ -1,8 +1,8 @@
-package com.example.stumanage.dao;
+package com.example.stumanage.mapper;
 
-import com.example.stumanage.domin.Student;
+import com.example.stumanage.domain.Student;
 import org.apache.ibatis.annotations.*;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -10,12 +10,11 @@ import java.util.List;
 /**
  * describe: 映射类
  *
- * @author: bbt_zhangzk
+ * @author: zhangzk
  * @date: 2018/1/8  11:47
  **/
-
-@Component
 @Mapper
+@Repository
 public interface StuMapper {
 
     /**

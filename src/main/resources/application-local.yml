@@ -14,11 +14,11 @@ spring:
     timeout: 0
 
 
-
-
 server:
   context-path: /stumanage
   port: 8080
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
 
 
 

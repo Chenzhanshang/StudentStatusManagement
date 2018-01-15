@@ -1,6 +1,6 @@
 package com.example.stumanage.controller;
 
-import com.example.stumanage.domin.Student;
+import com.example.stumanage.domain.Student;
 import com.example.stumanage.service.StuService;
 import org.springframework.web.bind.annotation.*;
 

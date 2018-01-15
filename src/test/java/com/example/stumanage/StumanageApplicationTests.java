@@ -1,7 +1,7 @@
 package com.example.stumanage;
 
-import com.example.stumanage.dao.StuMapper;
-import com.example.stumanage.domin.Student;
+import com.example.stumanage.mapper.StuMapper;
+import com.example.stumanage.domain.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -10,7 +10,6 @@
           href="http://www.hebtu.edu.cn/template/0de2d533795b48688b0776bfade53f5a/20140828143712866/images/index.css">
     <link rel="stylesheet" type="text/css"
           href="http://www.hebtu.edu.cn/template/0de2d533795b48688b0776bfade53f5a/20140828143712866/images/ban.css">
-
 </head>
 
 <body>

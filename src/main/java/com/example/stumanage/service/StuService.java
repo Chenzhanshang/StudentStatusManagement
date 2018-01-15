@@ -1,7 +1,7 @@
 package com.example.stumanage.service;
 
 
-import com.example.stumanage.domin.Student;
+import com.example.stumanage.domain.Student;
 
 import java.util.List;
 

@@ -1,9 +1,8 @@
 package com.example.stumanage.service.impl;
 
 
-import com.example.stumanage.dao.StuMapper;
-import com.example.stumanage.domin.Student;
-import com.example.stumanage.domin.User;
+import com.example.stumanage.mapper.StuMapper;
+import com.example.stumanage.domain.Student;
 import com.example.stumanage.service.StuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
-import javax.xml.transform.Templates;
-import java.io.Console;
+import javax.annotation.Resource;
 import java.util.List;
 
 
@@ -26,7 +24,7 @@ import java.util.List;
 @Service
 public class StuServiceImpl implements StuService{
 
-    @Autowired
+    @Resource
     private StuMapper stuMapper;
 
     @Autowired
@@ -40,20 +38,7 @@ public class StuServiceImpl implements StuService{
     @Override
     public Student findById(String stuId){
 
-
-        boolean flag = redisTemplate.hasKey(stuId);
-        ValueOperations<String,Student> ops = redisTemplate.opsForValue();
-
-        if (flag){
-            return ops.get(stuId);
-        }
         Student result =stuMapper.findById(stuId);
-
-        try {
-            ops.set(stuId,result);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
 
        return result;
     }

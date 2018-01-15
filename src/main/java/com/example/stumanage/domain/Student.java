@@ -1,10 +1,13 @@
-package com.example.stumanage.domin;
+package com.example.stumanage.domain;
 
+/**
+ *
+ * @author: zhangzengke
+ * @date: 2018/1/15
+ **/
 
-import java.io.Serializable;
+public class Student {
 
-public class Student implements Serializable {
-    private static final long serialVersionUID = -1L;
     private Integer id;
     private String name;
     private String stuId;
