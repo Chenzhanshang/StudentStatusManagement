@@ -72,12 +72,14 @@ public class Student {
         this.idCard = idCard;
     }
 
+
+
     @Override
     public String toString() {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", stuId=" + stuId +
+                ", stuId='" + stuId + '\'' +
                 ", sex='" + sex + '\'' +
                 ", age=" + age +
                 ", address='" + address + '\'' +
