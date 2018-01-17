@@ -7,7 +7,7 @@ import java.util.List;
 
 
 /**
- * describe: TODO
+ * describe: 学籍信息service接口
  * creat_user: bbt_zhangzk
  * creat_date: 2018/1/4
  * creat_time: 14:15

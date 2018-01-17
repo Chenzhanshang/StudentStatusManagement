@@ -1,13 +1,12 @@
 package com.example.stumanage.service.impl;
 
 
-import com.example.stumanage.mapper.StuMapper;
 import com.example.stumanage.domain.Student;
+import com.example.stumanage.mapper.StuMapper;
 import com.example.stumanage.service.StuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,7 +14,7 @@ import java.util.List;
 
 
 /**
- * describe: TODO
+ * describe: 学籍信息service实现类
  * creat_user: bbt_zhangzk
  * creat_date: 2018/1/4
  * creat_time: 14:15
