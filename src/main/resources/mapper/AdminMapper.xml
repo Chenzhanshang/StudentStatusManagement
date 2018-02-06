@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.stumanage.mapper.AdminMapper">
+    <insert id="saveAdmin">
+      INSERT INTO tb_admin(nick_name,user_name,pass_word,phone)
+      VALUES(#{nickName},#{userName},#{passWord},#{phone})
+    </insert>
+    <update id="updateAdmin">
+        UPDATE tb_admin
+        SET pass_word=#{passWord},
+        phone=#{phone}
+        WHERE user_name=#{userName}
+    </update>
+    <delete id="delAdmin">
+        DELETE FROM tb_admin
+        WHERE id=#{id}
+    </delete>
+    <select id="findByUserName" resultType="com.example.stumanage.domain.TbAdminPo">
+        SELECT * FROM tb_admin WHERE user_name=#{userName}
+    </select>
+</mapper>

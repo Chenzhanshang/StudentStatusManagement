@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.stumanage.mapper.StudentCourseMapper">
+    <delete id="deleteById">
+        DELETE FROM tb_student_course WHERE  id=#{id}
+    </delete>
+    <delete id="deleteByStuId">
+        DELETE  FROM tb_student_course WHERE stu_id=#{stuId}
+    </delete>
+
+    <select id="findById" resultType="com.example.stumanage.domain.TbStudentCoursePo">
+        SELECT * FROM  tb_student_course WHERE id =#{id}
+    </select>
+
+    <select id="findByStuId" resultType="com.example.stumanage.vo.TbStudentCourseVo">
+        SELECT * FROM  tb_student_course WHERE stu_id =#{stuId}
+    </select>
+    <select id="findByStuIdd" resultType="com.example.stumanage.domain.TbStudentCoursePo">
+        SELECT * FROM  tb_student_course WHERE stu_id =#{stuId}
+
+    </select>
+    
+    <insert id="save">
+        INSERT  INTO tb_student_course(stu_id,course_name,teacher,created_by,modified_by)
+        VALUES
+        (#{stuId},#{courseName},#{teacher},#{createdBy},#{modifiedBy})
+    </insert>
+    
+    <update id="edit" parameterType="com.example.stumanage.domain.TbStudentCoursePo">
+        UPDATE tb_student_course SET course_name=#{courseName},grade=#{grade},
+        teacher=#{teacher},
+        `analyze`=#{analyze},
+        modified_by=#{modifiedBy},
+        created_by=#{createdBy} WHERE  stu_id=#{stuId}
+    </update>
+
+
+</mapper>
