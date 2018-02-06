@@ -1,18 +1,18 @@
-var contentPath = "/ops";
+var contentPath = "/stumanage";
 
 
 jQuery(document).ready(function() {
     "use strict";
 
-    $.ajax({
+    /*$.ajax({
         type: "POST",
-        url: contentPath+"/api/v1/control/role/menu/tree",
+        url: contentPath+"/api/system/menu/menuTree",
         async: false,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
         },
         dataType: "json",
-        data: '{}',
+        data: '',
         success: function (data) {
             var str = '<li class="sidebar-label pt20">首页</li><li class="active"><a href="'+contentPath+'/"><span class="glyphicon glyphicon-home"></span> <span class="sidebar-title">控制台</span></a></li>'
             // console.log(data);
@@ -23,8 +23,8 @@ jQuery(document).ready(function() {
                     str = str+ '<li class="sidebar-label pt15">'+e.text+'</li>';
                     str = makeMenu(e.children,str,1);
                 });
-            }
-
+            }*/
+/*
             $('#menuBar').html(str);
 
             function makeMenu(data,str1,level) {
@@ -71,7 +71,7 @@ jQuery(document).ready(function() {
         },
         error:function (data) {
         }
-    });
+    });*/
 
     Core.init();
 
@@ -92,9 +92,9 @@ jQuery(document).ready(function() {
     });
     setActiveClassForMenu();
 
-    $.post(contentPath+"/login/getCurrentPrincipal", null, function(data){
+   /* $.post(contentPath+"/login/getCurrentPrincipal", null, function(data){
         $('#vueheader').find('> ul.nav.navbar-nav.navbar-right > li > a > b').text(data.data.name);
-    },"json");
+    },"json");*/
 
 });
 function setActiveClassForMenu() {

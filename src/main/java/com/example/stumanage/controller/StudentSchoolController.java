@@ -14,6 +14,7 @@ public class StudentSchoolController {
 
     @RequestMapping("/list")
     public String getIndex(){
-        return "/stumanage/school";
+        return "/stumanage/schoolIndex";
     }
+
 }

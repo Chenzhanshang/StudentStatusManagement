@@ -1,9 +1,7 @@
 package com.example.stumanage.common.exception;
 
-import com.example.stumanage.common.RestResultEnum;
-
 /**
- * 自定义异常封装类,用于转换异常 Created by fengqiang on 2016/11/16.
+ * 自定义异常封装类,用于转换异常
  */
 public class CustomException extends RuntimeException {
 

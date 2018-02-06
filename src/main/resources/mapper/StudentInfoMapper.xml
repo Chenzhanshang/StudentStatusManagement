@@ -24,7 +24,6 @@
     </delete>
     <select id="findByAll" resultType="com.example.stumanage.vo.TbStudentInfoVo">
         SELECT * FROM tb_student_info
-
     </select>
     <select id="findByCardId" resultType="com.example.stumanage.domain.TbStudentInfoPo">
         SELECT * FROM tb_student_info WHERE card_id=#{cardId}

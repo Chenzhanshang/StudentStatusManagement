@@ -1,10 +1,8 @@
 package com.example.stumanage.common.exception;
 
-import com.example.stumanage.common.RestResultEnum;
-
 /**
- * @author Zi Lai Ye
- * @date 2016/12/3
+ * @author
+ * @date 2018/2/13
  */
 public class EnumParseException extends CustomException {
 	public EnumParseException() {

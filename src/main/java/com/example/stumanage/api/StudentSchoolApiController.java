@@ -72,9 +72,9 @@ public class StudentSchoolApiController {
      */
     @PostMapping("/findAll")
     public ResponseResult<PageInfo<TbStudentSchoolVo>> findAll(@RequestBody TbStudentSchoolVo record){
-        List<TbStudentSchoolVo> list = studentSchoolService.findAll(record);
+        List<TbStudentSchoolVo> tbStudentSchoolVos = studentSchoolService.findAll(record);
 
-        return new ResponseResult<>(new PageInfo<>(list));
+        return new ResponseResult<>(new PageInfo<>(tbStudentSchoolVos));
     }
 
     /**

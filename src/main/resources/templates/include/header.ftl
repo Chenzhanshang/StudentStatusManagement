@@ -1,23 +1,8 @@
-<!-----------------------------------------------------------------+
-     ".navbar" Helper Classes:
-  -------------------------------------------------------------------+
-     * Positioning Classes:
-      '.navbar-static-top' - Static top positioned navbar
-      '.navbar-static-top' - Fixed top positioned navbar
 
-     * Available Skin Classes:
-       .bg-dark    .bg-primary   .bg-success
-       .bg-info    .bg-warning   .bg-danger
-       .bg-alert   .bg-system
-  -------------------------------------------------------------------+
-    Example: <header class="navbar navbar-fixed-top bg-primary">
-    Results: Fixed top navbar with blue background
-  ------------------------------------------------------------------->
-<!-- Start: Header -->
 <header id="vueheader" class="navbar navbar-fixed-top">
     <div class="navbar-branding dark">
         <a class="navbar-brand" href="<@s.url '/'/>">
-            <b>订单管理中心</b>
+            <b>学生档案管理中心</b>
         </a>
         <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
     </div>
@@ -37,4 +22,3 @@
         </li>
     </ul>
 </header>
-<!-- End: Header -->

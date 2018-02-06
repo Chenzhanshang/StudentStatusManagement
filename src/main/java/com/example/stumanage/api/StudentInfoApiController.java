@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,14 +41,10 @@ public class StudentInfoApiController {
      * 查找所有学生学籍信息分页
      */
     @PostMapping("/findAll")
-    public ResponseResult<PageInfo<TbStudentInfoVo>> findAll(@RequestBody Map map) {
-        System.out.println(map.get("stuId"));
+    public ResponseResult<PageInfo<TbStudentInfoVo>> findAll(@RequestBody TbStudentInfoVo record) {
 
-        return null;
-
-     /*   List<TbStudentInfoVo> list = studentInfoService.findByAll(record);
-
-        return new ResponseResult<>(new PageInfo<>(list));*/
+        List<TbStudentInfoVo> tbStudentInfoVos = studentInfoService.findByAll(record);
+        return new ResponseResult<>(new PageInfo<>(tbStudentInfoVos));
     }
 
     @PostMapping("/save")

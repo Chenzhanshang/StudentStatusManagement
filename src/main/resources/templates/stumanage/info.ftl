@@ -61,13 +61,13 @@
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <td>编号</td>
-                                        <td>姓名</td>
-                                        <td>性别</td>
-                                        <td>身份证号</td>
-                                        <td>入学时间</td>
-                                        <td>创建人</td>
-                                        <td>操作</td>
+                                        <td align="center">编号</td>
+                                        <td align="center">姓名</td>
+                                        <td align="center">性别</td>
+                                        <td align="center">身份证号</td>
+                                        <td align="center">入学时间</td>
+                                        <td align="center">创建人</td>
+                                        <td align="center">操作</td>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -475,7 +475,7 @@
             },
             methods:{
                 chuan:function (cardId) {
-                            window.location.href="http://localhost:8080/ops/info/findByCardId/"+cardId;
+                            window.location.href="http://localhost:8080/stumanage/info/findByCardId/"+cardId;
                             },
                 search: function () {
                     $("#callBackPager").page("destroy");

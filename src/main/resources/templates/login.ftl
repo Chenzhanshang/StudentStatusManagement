@@ -32,7 +32,7 @@
                                     </span>
 
                             <#else>
-                                <span>欢迎使用闪电侠系统</span>
+                                <span>欢迎使用学生档案管理系统</span>
                             </#if>
                             </div>
                             <!-- Username Input -->

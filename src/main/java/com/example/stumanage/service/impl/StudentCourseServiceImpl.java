@@ -5,6 +5,7 @@ import com.example.stumanage.domain.TbStudentCoursePo;
 import com.example.stumanage.mapper.StudentCourseMapper;
 import com.example.stumanage.service.StudentCourseService;
 import com.example.stumanage.vo.TbStudentCourseVo;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -44,6 +45,7 @@ public class StudentCourseServiceImpl implements StudentCourseService {
      */
     @Override
     public List<TbStudentCourseVo> findByStuId(TbStudentCourseVo record) {
+        PageHelper.startPage(record.getPage(),record.getPageSize());
 
         List<TbStudentCourseVo> list = studentCourseMapper.findByStuId(record);
 

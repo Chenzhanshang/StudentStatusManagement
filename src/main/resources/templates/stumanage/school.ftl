@@ -43,12 +43,12 @@
                 </div>
                     <div class="tab-pane active">
                         <div class="col-md-12">
-                            <p>姓名：${student.stuName!}</p>
-                            <p>性别：${student.sex!}</p>
+                            <p align="center">姓名：${student.stuName!}</p>
+                            <p align="center">性别：${student.sex!}</p>
                         </div>
                         <div class="col-md-12">
-                        <p>身份证号：${student.cardId!}</p>
-                        <p>籍贯：${student.nativePlace!}</p>
+                        <p align="center">身份证号：${student.cardId!}</p>
+                        <p align="center">籍贯：${student.nativePlace!}</p>
                         </div>
                     </div>
                     <div class="panel-body pn">

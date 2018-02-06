@@ -49,8 +49,8 @@ public class StudentCourseApiController {
         tbStudentCourseVo.setPage(page);
         tbStudentCourseVo.setPageSize(pageSize);
 
-        List<TbStudentCourseVo> list = studentCourseService.findByStuId(tbStudentCourseVo);
-        return new ResponseResult<>(new PageInfo<>(list));
+        List<TbStudentCourseVo> tbStudentCourseVos = studentCourseService.findByStuId(tbStudentCourseVo);
+        return new ResponseResult<>(new PageInfo<>(tbStudentCourseVos));
     }
 
     /**

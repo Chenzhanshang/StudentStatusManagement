@@ -62,10 +62,10 @@
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <td>编号</td>
-                                        <td>课程名称</td>
-                                        <td>任课老师</td>
-                                        <td>成绩</td>
+                                        <td align="center">编号</td>
+                                        <td align="center">课程名称</td>
+                                        <td align="center">任课老师</td>
+                                        <td align="center">成绩</td>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -285,6 +285,7 @@
                             this.$http.get(contentPath+"/api/course/del/"+course.id)
                                     .then(function (response) {
                                         sweetAlert("删除成功", "删除课程信息成功" , "info");
+                                        location.reload();
                                     },function (response) {
                                         sweetAlert(response.data.message, "错误码" + response.data.code, "error");
                                     }
