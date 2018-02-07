@@ -16,7 +16,7 @@
             <div class="section-divider mv30" align="center"><a class="accordion-toggle" href="http://127.0.0.1:8080/stumanage/course/list"><li><span class="glyphicon glyphicon-tower"></span>
                 <span class="sidebar-title">课程设置</span><span class="caret"></span></li>
             </a></div>
-            <div class="section-divider mv30" align="center"> <a class="accordion-toggle" href="http://localhost:8080/stumanage/info/list"><li><span class="glyphicon glyphicon-tower"></span>
+            <div class="section-divider mv30" align="center"> <a class="accordion-toggle" href="http://localhost:8080/stumanage/other/list"><li><span class="glyphicon glyphicon-tower"></span>
                 <span class="sidebar-title">其他设置</span><span class="caret"></span></li>
             </a></div>
             <div class="section-divider mv30" align="center"><a class="accordion-toggle" href="http://localhost:8080/stumanage/admin/list"><li><span class="glyphicon glyphicon-tower"></span>

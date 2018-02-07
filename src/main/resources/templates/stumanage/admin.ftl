@@ -37,119 +37,13 @@
         </header>
         <section id="content" class="table-layout animated fadeIn">
             <div class="tray tray-center">
-                <div class="panel" id="spy7">
-                    <div class="panel-heading">
-                          <span class="panel-title">
-                            <span class="fa fa-table"></span>产品大纲
-                                &nbsp; &nbsp; &nbsp;发布者：
-                               <select class="field select" v-model="sender">
-                                    <#--<option value="null">全部</option>-->
-                                    <option v-for="user in senders" v-bind:value="user">{{user}}</option>
-                                </select>
-                                 &nbsp;发布状态：
-                              <select class="field select" v-model="versionStatus">
-                                <#--<option value="null">全部</option>-->
-                                <option value="1">未发布</option>
-                                <option value="2">已发布</option>
-                              </select>
-                          </span>
-                        <button class="btn btn-default btn-sm w75 fw600 ml10" @click="queryByUserOrStatus()">
-                            筛选
-                        </button>
-                        <span class="panel-controls">
-                            <a href="#" class="btn btn-default btn-sm w75 fw600 ml10" data-toggle="modal"
-                               data-target="#myModalAdd">
-                                发布新版
-                            </a>
-                            <a href="#" class="panel-control-collapse"></a>
-                            <a href="#" class="panel-control-fullscreen"></a>
-                        </span>
-                    </div>
-                    <div class="panel-body pn">
-                        <div class="bs-component">
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <td>编号</td>
-                                        <td>发布时间</td>
-                                        <td>发布者</td>
-                                        <td>版本名称</td>
-                                        <td>产品数量</td>
-                                        <td>发布状态</td>
-                                        <td>操作</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr v-for="version in versions">
-                                        <td align="center">{{version.id}}</td>
-                                        <td align="center">{{version.deployTime}}</td>
-                                        <td align="center">{{version.sender}}</td>
-                                        <td align="center">{{version.versionName}}</td>
-                                        <td align="center">{{version.products.length}}</td>
-                                        <td align="center" v-if="version.status==1">
-                                            未发布
-                                        </td>
-                                        <td align="center" v-if="version.status==2">
-                                            已发布
-                                        </td>
-                                        <td align="center">
-                                            <button data-toggle="modal" data-target="#myModalShow" v-if="version.status==2" @click="showVersion(version)">查看</button>
-                                            <button v-if="version.status==2" @click="updateToUnDeploy(version)">撤回</button>
-                                            <button data-toggle="modal" data-target="#myModalEdit" v-if="version.status!==2" @click="editVersion(version)">编辑</button>
-                                            <button data-toggle="modal" data-target="#" v-if="version.status!==2" @click="updateToDeploy(version)">发布</button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                    <tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </section>
         <!-- End: Content -->
     <#include '../include/footer.ftl' />
     </section>
-    <div class="modal fade" id="myModalShow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 class="modal-title" id="myModalLabel">查看版本详情</h3>
-                </div>
-                <div class="modal-body">
-                    <div class="admin-form">
-                        <div class="section">
-                            <label class="field-label">版本名称</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    {{showVersionInfo.versionName}}
-                                </div>
-                            </label>
-                        </div>
-                        <template v-for="(product,index) in showVersionInfo.products">
-                            <div class="section">
-                                <label class="field-label">产品名称</label>
-                                <label class="field prepend-icon">
-                                    {{product.productName}}
-                                </label>
-                                <div>
-                                    <img style="height: 100px; width: auto" v-bind:src="product.realDetailProduct">
-                                </div>
-                            </div>
-                        </template>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-    </div>
 
     <div class="modal fade" id="myModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">

@@ -8,6 +8,7 @@ import com.example.stumanage.mapper.StudentInfoMapper;
 import com.example.stumanage.mapper.StudentSchoolMapper;
 import com.example.stumanage.service.StudentInfoService;
 import com.example.stumanage.vo.TbStudentInfoVo;
+import com.example.stumanage.vo.TbStudentSchoolVo;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -69,11 +70,14 @@ public class StudentInfoServiceImpl implements StudentInfoService {
     @Override
     public void delInfo(TbStudentInfoVo tbStudentInfoVo) {
         studentInfoMapper.delInfo(tbStudentInfoVo.getId());
-        studentSchoolMapper.deleteByCard(tbStudentInfoVo.getCardId());
+
         //身份证号查找学生学号
-        String stuId = studentSchoolMapper.findStuIdByCardId(tbStudentInfoVo.getCardId());
+        String cardId = tbStudentInfoVo.getCardId();
+        TbStudentSchoolPo tbStudentSchoolPo = studentSchoolMapper.findByCardId(cardId);
+        String stuId =tbStudentSchoolPo.getStuId();
         //根据学号删除课程表
         studentCourseMapper.deleteByStuId(stuId);
+        studentSchoolMapper.deleteByCard(tbStudentInfoVo.getCardId());
     }
 
     /**

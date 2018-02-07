@@ -51,11 +51,11 @@ public interface StudentSchoolService {
     TbStudentSchoolVo findByStuId(String stuId);
 
     /**
-     * 根据身份证号查找学号
+     * 根据身份证号查找信息
      * @param cardId
      * @return
      */
-    String findStuIdByCardId(String cardId);
+    TbStudentSchoolVo findByCardId(String cardId);
 
 
     /**
@@ -64,4 +64,10 @@ public interface StudentSchoolService {
      * @return
      */
     TbStudentSchoolVo findNameByStuId(String stuId);
+
+    /**
+     * 修改奖惩信息
+     * @param tbStudentSchoolVo
+     */
+    void other(TbStudentSchoolVo tbStudentSchoolVo);
 }

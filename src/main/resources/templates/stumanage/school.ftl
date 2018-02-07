@@ -53,62 +53,70 @@
                     </div>
                     <div class="panel-body pn">
                         <div class="modal-body">
-                            <div class="admin-form">
-                                <div class="section">
-                                    <label class="field-label">为该学生指定学号</label>
-                                    <label class="field prepend-icon">
-                                        <div class="form-group">
-                                            <input type="text" class="gui-input" v-model="addStudent.stuId">
+                            <div class="admin-form" align="center">
+                                <div class="row" align="center  ">
+                                    <div class="col-md-4">
+                                        <div class="section">
+                                            <label class="field-label">为该学生指定学号
+                                            </label>
+                                            <label class="field prepend-icon">
+                                                <input type="text" class="gui-input" v-model="addStudent.stuId">
+                                                <label class="field-icon">
+                                                    <i class="fa fa-edit"></i>
+                                                </label>
+                                            </label>
                                         </div>
-                                    </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="section">
+                                            <label class="field-label">选择学院
+                                            </label>
+                                            <label class="field select">
+                                                <select v-model="addStudent.academy">
+                                                    <option value="软件学院">软件学院</option>
+                                                    <option value="美术学院">美术学院</option>
+                                                    <option value="数学学院">数学学院</option>
+                                                </select>
+                                                <i class="arrow double"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="section">
+                                        <label class="field-label">选择系
+                                        </label>
+                                        <label class="field select">
+                                            <select v-model="addStudent.department">
+                                                <option value="一系">一系</option>
+                                                <option value="二系">二系</option>
+                                                <option value="三系">三系</option>
+                                            </select>
+                                            <i class="arrow double"></i>
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class="section">
-                                    <label class="field-label">姓名</label>
-                                    <label class="field prepend-icon">
-                                        <div class="form-group">
-                                            姓名必须与上面的保持一致
-                                            <input type="text" class="gui-input" v-model="addStudent.stuName">
-                                        </div>
-                                    </label>
-                                </div>
-                                <div class="section">
-                                    <label class="field-label">身份证号</label>
-                                    <label class="field prepend-icon">
-                                        <div class="form-group">
-                                            再次输入上面的身份证号
-                                            <input type="text" class="gui-input" v-model="addStudent.cardId">
-                                        </div>
-                                    </label>
-                                </div>
-                                <div class="section">
-                                    <label class="field-label">为该学生指定学院</label>
-                                    <label class="field prepend-icon">
-                                        <div class="form-group">
-                                            <input type="text" class="gui-input" v-model="addStudent.academy">
-                                        </div>
-                                    </label>
-                                </div>
-                                <div class="section">
-                                    <label class="field-label">为该学生指定系</label>
-                                    <label class="field prepend-icon">
-                                        <div class="form-group">
-                                            <input type="text" class="gui-input" v-model="addStudent.department">
-                                        </div>
-                                    </label>
-                                </div>
-                                <div class="section">
-                                    <label class="field-label">为该学生指定班</label>
-                                    <label class="field prepend-icon">
-                                        <div class="form-group">
-                                            <input type="text" class="gui-input" v-model="addStudent.clazz">
-                                        </div>
-                                    </label>
+                                <div class="col-md-4">
+                                    <div class="section">
+                                        <label class="field-label">选择班级
+                                        </label>
+                                        <label class="field select">
+                                            <select v-model="addStudent.clazz">
+                                                <option value="一班">一班</option>
+                                                <option value="二班">二班</option>
+                                                <option value="三班">三班</option>
+                                            </select>
+                                            <i class="arrow double"></i>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
 
                         </div>
                         <button type="button" class="btn btn-primary" @click="submit()">确定提交</button>
-
                     </div>
                 </div>
             </div>
@@ -124,27 +132,29 @@
     var app = new Vue({
         el:"#main",
         data:{
+
             addStudent:{
                 stuId:"",
-                stuName:"",
-                cardId:"",
+                stuName:"${student.stuName!}",
+                cardId:"${student.cardId!}",
                 academy:"",
                 department:"",
                 clazz:""
             }
+
         },
         methods:{
             submit:function () {
                 this.$http.post(contentPath+"/api/school/save",this.addStudent).then(
                     function (response) {
                         sweetAlert("保存成功，该学生的信息已经插入", "该学生的信息已经插入" , "info");
-                        location.reload();
                     },function (response) {
                             sweetAlert(response.data.message,"错误码"+response.data.code , "error");
                         }
 
                 )
-            },
+            }
+
 
 
         }

@@ -41,13 +41,13 @@
                             <span class="fa fa-table"></span>学生学籍信息
                           </span>
                         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;输入学号：
-                            <input type="text" class="btn btn-default btn-sm w75 fw600 ml10" v-model="queryStuId">
+                            <input type="text" class=" btn-default btn-sm w85 fw700 ml20" v-model="queryStuId">
 
                         <button class="btn btn-default btn-sm w75 fw600 ml10" @click="findByStuId()">
                             学号查找
                         </button>
                         <span class="panel-controls">
-                            <a href="#" class="btn btn-default btn-sm w75 fw600 ml10" data-toggle="modal"
+                            <a href="#" class="btn-default w75 fw600 ml10" data-toggle="modal"
                                data-target="#myModalAdd">
                                 添加新学生
                             </a>
@@ -71,7 +71,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="info in infos ">
+                                    <tr v-for="info in infos">
                                         <td align="center">{{info.id}}</td>
                                         <td align="center">{{info.stuName}}</td>
                                         <td align="center">{{info.sex}}</td>
@@ -82,10 +82,23 @@
                                             <button data-toggle="modal" data-target="#myModalShow" @click="showInfoo(info)">详细</button>
                                             <button data-toggle="modal" data-target="#myModalEdit" @click="editInfo(info)">编辑</button>
                                             <#--传后台身份证号查插入的学籍返回在另一个页面上-->
-                                            <button  @click="chuan(info.cardId)" >设置机构</button>
+
                                         </td>
                                     </tr>
-                                    <tr v-show="infos.length==0">
+                                    <tr v-bind="queryStuIdResult" v-if="queryStuIdResult!==''">
+                                        <td align="center">{{queryStuIdResult.id}}</td>
+                                        <td align="center">{{queryStuIdResult.stuName}}</td>
+                                        <td align="center">{{queryStuIdResult.sex}}</td>
+                                        <td align="center">{{queryStuIdResult.cardId}}</td>
+                                        <td align="center">{{queryStuIdResult.schoolTime}}</td>
+                                        <td align="center">{{queryStuIdResult.createdBy}}</td>
+                                        <td align="center">
+                                            <button data-toggle="modal" data-target="#myModalShow" @click="showInfoo(queryStuIdResult)">详细</button>
+                                            <button data-toggle="modal" data-target="#myModalEdit" @click="editInfo(queryStuIdResult)">编辑</button>
+                                        <#--传后台身份证号查插入的学籍返回在另一个页面上-->
+                                        </td>
+                                    </tr>
+                                    <tr v-show="infos.length==0&&queryStuIdResult.length==0">
                                         <td class="text-center" colspan="20">没有数据 ！</td>
                                     </tr>
                                     </tbody>
@@ -118,93 +131,102 @@
                 </div>
                 <div class="modal-body">
                     <div class="admin-form">
-                        <div class="section">
-                            <label class="field-label">编号</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    {{showInfo.id}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">姓名
+                                    </label>
+                                    <div class="form-group">
+                                        {{showInfo.stuName}}
+                                    </div>
                                 </div>
-                            </label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">性别
+                                    </label>
+                                    <div class="form-group">
+                                        {{showInfo.sex}}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="section">
-                            <label class="field-label">性别</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    {{showInfo.sex}}
-                                </div>
+                            <label class="field-label">身份证号
                             </label>
+                            <div class="form-group">
+                                {{showInfo.cardId}}
+                            </div>
                         </div>
-                        <div class="section">
-                            <label class="field-label">身份证号</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    {{showInfo.cardId}}
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">民族
+                                    </label>
+                                    <div class="form-group">
+                                        {{showInfo.nation}}
+                                    </div>
                                 </div>
-                            </label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">籍贯
+                                    </label>
+                                    <div class="form-group">
+                                        {{showInfo.nativePlace}}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+
                         <div class="section">
-                            <label class="field-label">民族</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    {{showInfo.nation}}
-                                </div>
+                            <label class="field-label">出生地
                             </label>
+                            <div class="form-group">
+                                {{showInfo.birthPlace}}
+                            </div>
                         </div>
-                        <div class="section">
-                            <label class="field-label">籍贯</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    {{showInfo.nativePlace}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">政治面貌
+                                    </label>
+                                    <div class="form-group">
+                                        {{showInfo.politicsStatus}}
+                                    </div>
                                 </div>
-                            </label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">婚否
+                                    </label>
+                                    <div class="form-group">
+                                        {{showInfo.weddingStatus}}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="section">
-                            <label class="field-label">出生地</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    {{showInfo.birthPlace}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">学籍状态
+                                    </label>
+                                    <div class="form-group">
+                                        {{showInfo.schoolStatus}}
+                                    </div>
                                 </div>
-                            </label>
-                        </div>
-                        <div class="section">
-                            <label class="field-label">政治面貌</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    {{showInfo.politicsStatus}}
+                            </div>
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">入学时间</label>
+                                    <div class="form-group">
+                                        {{showInfo.schoolTime}}
+                                    </div>
                                 </div>
-                            </label>
-                        </div>
-                        <div class="section">
-                            <label class="field-label">婚否</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    {{showInfo.weddingStatus}}
-                                </div>
-                            </label>
-                        </div>
-                        <div class="section">
-                            <label class="field-label">学籍状态</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    {{showInfo.schoolStatus}}
-                                </div>
-                            </label>
-                        </div>
-                        <div class="section">
-                            <label class="field-label">入学时间</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    {{showInfo.schoolTime}}
-                                </div>
-                            </label>
-                        </div>
-                        <div class="section">
-                            <label class="field-label">录入人</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    {{showInfo.createdBy}}
-                                </div>
-                            </label>
+                            </div>
                         </div>
 
                     </div>
@@ -227,101 +249,134 @@
                 </div>
                 <div class="modal-body">
                     <div class="admin-form">
-                        <div class="section">
-                            <label class="field-label">编号</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="updateInfo.id">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">姓名
+                                    </label>
+                                    <label class="field prepend-icon">
+                                        <input type="text" class="gui-input" v-model="updateInfo.stuName">
+                                        <label class="field-icon">
+                                            <i class="fa fa-edit"></i>
+                                        </label>
+                                    </label>
                                 </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">性别
+                                    </label>
+                                    <label class="field select">
+                                        <select v-model="updateInfo.sex">
+                                            <option value="男">男</option>
+                                            <option value="女">女</option>
+                                        </select>
+                                        <i class="arrow double"></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section">
+                            <label class="field-label">身份证号
+                            </label>
+                            <label class="field prepend-icon">
+                                <input type="text" class="gui-input" v-model="updateInfo.cardId">
+                                <label class="field-icon">
+                                    <i class="fa fa-edit"></i>
+                                </label>
                             </label>
                         </div>
-                        <div class="section">
-                            <label class="field-label">姓名</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="updateInfo.stuName">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">民族
+                                    </label>
+                                    <label class="field prepend-icon">
+                                        <input type="text" class="gui-input" v-model="updateInfo.nation">
+                                        <label class="field-icon">
+                                            <i class="fa fa-edit"></i>
+                                        </label>
+                                    </label>
                                 </div>
-                            </label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">籍贯
+                                    </label>
+                                    <label class="field prepend-icon">
+                                        <input type="text" class="gui-input" v-model="updateInfo.nativePlace">
+                                        <label class="field-icon">
+                                            <i class="fa fa-edit"></i>
+                                        </label>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                         <div class="section">
-                            <label class="field-label">性别</label>
+                            <label class="field-label">出生地
+                            </label>
                             <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="updateInfo.sex">
-                                </div>
+                                <input type="text" class="gui-input" v-model="updateInfo.birthPlace">
+                                <label class="field-icon">
+                                    <i class="fa fa-edit"></i>
+                                </label>
                             </label>
                         </div>
-                        <div class="section">
-                            <label class="field-label">身份证号</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="updateInfo.cardId">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">政治面貌
+                                    </label>
+                                    <label class="field select">
+                                        <select v-model="updateInfo.politicsStatus">
+                                            <option value="群众">群众</option>
+                                            <option value="团员">团员</option>
+                                            <option value="党员">党员</option>
+                                        </select>
+                                        <i class="arrow double"></i>
+                                    </label>
                                 </div>
-                            </label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">婚否
+                                    </label>
+                                    <label class="field select">
+                                        <select v-model="updateInfo.weddingStatus">
+                                            <option value="未婚">未婚</option>
+                                            <option value="已婚">已婚</option>
+                                        </select>
+                                        <i class="arrow double"></i>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="section">
-                            <label class="field-label">民族</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="updateInfo.nation">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">学籍状态
+                                    </label>
+                                    <label class="field select">
+                                        <select v-model="updateInfo.schoolStatus">
+                                            <option value="在读">在读</option>
+                                            <option value="已毕业">已毕业</option>
+                                        </select>
+                                        <i class="arrow double"></i>
+                                    </label>
                                 </div>
-                            </label>
-                        </div>
-                        <div class="section">
-                            <label class="field-label">籍贯</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="updateInfo.native_place">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">入学时间</label>
+                                    <label class="field prepend-icon">
+                                        <div class="form-group">
+                                            <input type="text" class="gui-input" v-model="updateInfo.schoolTime">
+                                        </div>
+                                    </label>
                                 </div>
-                            </label>
-                        </div>
-                        <div class="section">
-                            <label class="field-label">出生地</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="updateInfo.birthPlace">
-                                </div>
-                            </label>
-                        </div>
-                        <div class="section">
-                            <label class="field-label">政治面貌</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="updateInfo.politicsStatus">
-                                </div>
-                            </label>
-                        </div>
-                        <div class="section">
-                            <label class="field-label">婚否</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="updateInfo.weddingStatus">
-                                </div>
-                            </label>
-                        </div>
-                        <div class="section">
-                            <label class="field-label">学籍状态</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="updateInfo.schoolStatus">
-                                </div>
-                            </label>
-                        </div>
-                        <div class="section">
-                            <label class="field-label">入学时间</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="updateInfo.schoolTime">
-                                </div>
-                            </label>
-                        </div>
-                        <div class="section">
-                            <label class="field-label">修改操作人</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="updateInfo.createdBy">
-                                </div>
-                            </label>
+                            </div>
                         </div>
 
                     </div>
@@ -344,78 +399,127 @@
                 </div>
                 <div class="modal-body">
                     <div class="admin-form">
-                        <div class="section">
-                            <label class="field-label">姓名</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="addInfo.stuName">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">姓名
+                                    </label>
+                                    <label class="field prepend-icon">
+                                        <input type="text" class="gui-input" v-model="addInfo.stuName">
+                                        <label class="field-icon">
+                                            <i class="fa fa-edit"></i>
+                                        </label>
+                                    </label>
                                 </div>
-                            </label>
-                        </div>
-                        <div class="section">
-                            <label class="field-label">性别</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="addInfo.sex">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">性别
+                                    </label>
+                                    <label class="field select">
+                                        <select v-model="addInfo.sex">
+                                            <option value="男">男</option>
+                                            <option value="女">女</option>
+                                        </select>
+                                        <i class="arrow double"></i>
+                                    </label>
                                 </div>
-                            </label>
+                            </div>
                         </div>
-                        <div class="section">
-                            <label class="field-label">身份证号</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
+
+                            <div class="section">
+                                <label class="field-label">身份证号
+                                </label>
+                                <label class="field prepend-icon">
                                     <input type="text" class="gui-input" v-model="addInfo.cardId">
+                                    <label class="field-icon">
+                                        <i class="fa fa-edit"></i>
+                                    </label>
+                                </label>
+                            </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">民族
+                                    </label>
+                                    <label class="field prepend-icon">
+                                        <input type="text" class="gui-input" v-model="addInfo.nation">
+                                        <label class="field-icon">
+                                            <i class="fa fa-edit"></i>
+                                        </label>
+                                    </label>
                                 </div>
-                            </label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">籍贯
+                                    </label>
+                                    <label class="field prepend-icon">
+                                        <input type="text" class="gui-input" v-model="addInfo.nativePlace">
+                                        <label class="field-icon">
+                                            <i class="fa fa-edit"></i>
+                                        </label>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
+
+
                         <div class="section">
-                            <label class="field-label">民族</label>
+                            <label class="field-label">出生地
+                            </label>
                             <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="addInfo.nation">
-                                </div>
+                                <input type="text" class="gui-input" v-model="addInfo.birthPlace">
+                                <label class="field-icon">
+                                    <i class="fa fa-edit"></i>
+                                </label>
                             </label>
                         </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">政治面貌
+                                    </label>
+                                    <label class="field select">
+                                        <select v-model="addInfo.politicsStatus">
+                                            <option value="群众">群众</option>
+                                            <option value="团员">团员</option>
+                                            <option value="党员">党员</option>
+                                        </select>
+                                        <i class="arrow double"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="section">
+                                    <label class="field-label">婚否
+                                    </label>
+                                    <label class="field select">
+                                        <select v-model="addInfo.weddingStatus">
+                                            <option value="未婚">未婚</option>
+                                            <option value="已婚">已婚</option>
+                                        </select>
+                                        <i class="arrow double"></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
                         <div class="section">
-                            <label class="field-label">籍贯</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="addInfo.nativePlace">
-                                </div>
+                            <label class="field-label">学籍状态
+                            </label>
+                            <label class="field select">
+                                <select v-model="addInfo.schoolStatus">
+                                    <option value="在读">在读</option>
+                                    <option value="已毕业">已毕业</option>
+                                </select>
+                                <i class="arrow double"></i>
                             </label>
                         </div>
-                        <div class="section">
-                            <label class="field-label">出生地</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="addInfo.birthPlace">
-                                </div>
-                            </label>
-                        </div>
-                        <div class="section">
-                            <label class="field-label">政治面貌</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="addInfo.politicsStatus">
-                                </div>
-                            </label>
-                        </div>
-                        <div class="section">
-                            <label class="field-label">婚否</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="addInfo.weddingStatus">
-                                </div>
-                            </label>
-                        </div>
-                        <div class="section">
-                            <label class="field-label">学籍状态</label>
-                            <label class="field prepend-icon">
-                                <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="addInfo.schoolStatus">
-                                </div>
-                            </label>
-                        </div>
+                            </div>
+                            <div class="col-md-4">
                         <div class="section">
                             <label class="field-label">入学时间</label>
                             <label class="field prepend-icon">
@@ -423,6 +527,8 @@
                                     <input type="text" class="gui-input" v-model="addInfo.schoolTime">
                                 </div>
                             </label>
+                        </div>
+                            </div>
                         </div>
 
                     </div>
@@ -444,8 +550,19 @@
             el:"#main",
             data:{
                 queryStuId:"",
-                queryStuIdResult:{},
-                updateInfo:{},
+                queryStuIdResult:"",
+                updateInfo:{
+                    stuName:"",
+                    sex:"",
+                    cardId:"",
+                    nation:"",
+                    nativePlace:"",
+                    birthPlace:"",
+                    politicsStatus:"",
+                    weddingStatus:"",
+                    schoolStatus:"",
+                    schoolTime:""
+                },
                 addInfo:{
                     stuName:"",
                     sex:"",
@@ -526,19 +643,31 @@
                 saveAddInfo:function () {
                     this.$http.post(contentPath+"/api/info/save",this.addInfo).then(
                             function (response) {
-                                sweetAlert("保存成功", "保存成功" , "info");
-                                location.reload();
+                                sweetAlert("保存成功", "保存成功,请给该生指派学院等学校信息" , "info");
+                                this.chuan(this.addInfo.cardId);
                             },function (response) {
                                 sweetAlert(response.data.message,"错误码"+response.data.code , "error");
                             })
                 },
                 findByStuId :function () {
-                    this.$http.get(contentPath+"/api/info/findByStuId",this.queryStuId).then(
-                            function (response) {
-                                this.queryStuIdResult=response.data.data;
-                            },function (response) {
-                                sweetAlert(response.data.message,"错误码"+response.data.code , "error");
-                            })
+                    if(this.queryStuId===""){
+                        sweetAlert("请输入学号", "请输入学号" , "info");
+                    }
+                    else{
+                        this.$http.get(contentPath+"/api/info/findByStuId", {
+                            params: {
+                                stuId:this.queryStuId
+                                 }
+                        })
+                            .then(
+                                function (response) {
+                                    $("#callBackPager").page("destroy");
+                                    this.infos=[];
+                                    this.queryStuIdResult=response.data.data;
+                                },function (response) {
+                                    sweetAlert("没有查该学生的学籍信息,请重新输入","错误码"+response.data.code , "error");
+                                })
+                    }
                 },
                 updateInfoSave: function () {
                     this.$http.post(contentPath+"/api/info/update",this.updateInfo).then(

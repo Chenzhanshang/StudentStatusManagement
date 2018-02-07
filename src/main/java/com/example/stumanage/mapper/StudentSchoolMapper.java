@@ -3,6 +3,7 @@ package com.example.stumanage.mapper;
 
 import com.example.stumanage.domain.TbStudentSchoolPo;
 import com.example.stumanage.vo.TbStudentSchoolVo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -56,5 +57,7 @@ public interface StudentSchoolMapper {
      * @param cardId
      * @return
      */
-    String findStuIdByCardId(String cardId);
+    TbStudentSchoolPo findByCardId(String cardId);
+
+    void other(@Param("experience") String experience,@Param("stuId") String stuId);
 }

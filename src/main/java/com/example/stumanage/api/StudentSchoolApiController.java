@@ -37,10 +37,27 @@ public class StudentSchoolApiController {
         return new ResponseResult();
     }
 
+    /**
+     * 更新学生机构
+     * @param tbStudentSchoolVo
+     * @return
+     */
     @PostMapping("/update")
     public  ResponseResult update(@RequestBody TbStudentSchoolVo tbStudentSchoolVo){
 
         studentSchoolService.update(tbStudentSchoolVo);
+        return  new ResponseResult();
+    }
+
+    /**
+     * 设置学生奖惩信息
+     * @param tbStudentSchoolVo
+     * @return
+     */
+    @PostMapping("/other")
+    public  ResponseResult other(@RequestBody TbStudentSchoolVo tbStudentSchoolVo){
+
+        studentSchoolService.other(tbStudentSchoolVo);
         return  new ResponseResult();
     }
 
@@ -89,13 +106,13 @@ public class StudentSchoolApiController {
     }
 
     /**
-     * 根据身份证号查询学号
+     * 根据身份证号查询机构信息
      * @return
      */
-    @GetMapping("/findStuIdByCardId")
-    public ResponseResult<String> findStuIdByCardId(@RequestParam String stuId){
-        String stuid = studentSchoolService.findStuIdByCardId(stuId);
+    @GetMapping("/findByCardId")
+    public ResponseResult<TbStudentSchoolVo> findByCardId(@RequestParam String stuId){
+        TbStudentSchoolVo tbStudentSchoolVo = studentSchoolService.findByCardId(stuId);
 
-        return new ResponseResult<>(stuid);
+        return new ResponseResult<>(tbStudentSchoolVo);
     }
 }

@@ -66,6 +66,7 @@
                                         <td align="center">课程名称</td>
                                         <td align="center">任课老师</td>
                                         <td align="center">成绩</td>
+                                        <td align="center">成绩分析</td>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -74,6 +75,7 @@
                                         <td align="center">{{course.courseName}}</td>
                                         <td align="center">{{course.teacher}}</td>
                                         <td align="center">{{course.grade}}</td>
+                                        <td align="center">{{course.analyze}}</td>
                                         <td align="center">
                                             <button data-toggle="modal" data-target="#myModalEdit" @click="trans(course)">修改课程信息</button>
                                             <button data-toggle="modal" data-target="#myModalEdit" @click="delCourse(course)">删除该课程</button>
@@ -267,7 +269,6 @@
                                 }
                             }).then(function (response) {
                                 sweetAlert("添加成功", "添加课程成功" , "info");
-                                location.reload();
                             },function (response) {
                                 sweetAlert(response.data.message, "错误码" + response.data.code, "error");
                             }

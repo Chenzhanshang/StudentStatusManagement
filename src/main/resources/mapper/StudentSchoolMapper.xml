@@ -22,13 +22,18 @@
         DELETE FROM tb_student_school
         WHERE card_id=#{cardId}
     </delete>
-    <select id="findAll" resultType="com.example.stumanage.domain.TbStudentSchoolPo">
+    <select id="findAll" resultType="com.example.stumanage.vo.TbStudentSchoolVo">
         SELECT * FROM  tb_student_school
     </select>
     <select id="findByStuId" resultType="com.example.stumanage.domain.TbStudentSchoolPo">
         SELECT * FROM tb_student_school WHERE stu_id=#{stuId}
     </select>
-    <select id="findStuIdByCardId" resultType="string">
-        SELECT stu_id FROM tb_student_school WHERE card_id=#{cardId}
+    <select id="findByCardId" resultType="com.example.stumanage.domain.TbStudentSchoolPo">
+        SELECT * FROM tb_student_school WHERE card_id=#{cardId}
     </select>
+    <update id="other">
+        UPDATE tb_student_school
+        SET experience=#{experience} WHERE stu_id=#{stuId}
+    </update>
+
 </mapper>

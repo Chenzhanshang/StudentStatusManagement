@@ -55,6 +55,16 @@ public class StudentSchoolServiceImpl implements StudentSchoolService {
     return tbStudentSchoolVo;
     }
 
+    /**
+     * 修改奖惩信息
+     * @param tbStudentSchoolVo
+     */
+    @Override
+    public void other(TbStudentSchoolVo tbStudentSchoolVo) {
+        String experience=tbStudentSchoolVo.getExperience();
+        String stuId = tbStudentSchoolVo.getStuId();
+        studentSchoolMapper.other(experience,stuId );
+    }
 
 
     /**
@@ -121,7 +131,7 @@ public class StudentSchoolServiceImpl implements StudentSchoolService {
     }
 
     /**
-     * 根据学号查询学生机构信息拼接学生课程信息
+     * 根据学号查询学生机构信息
      * @param stuId
      * @return
      */
@@ -131,7 +141,7 @@ public class StudentSchoolServiceImpl implements StudentSchoolService {
         TbStudentSchoolPo tbStudentSchoolPo = studentSchoolMapper.findByStuId(stuId);
         TbStudentSchoolVo tbStudentSchoolVo = new TbStudentSchoolVo();
         BeanUtils.copyProperties(tbStudentSchoolPo,tbStudentSchoolVo);
-        List<TbStudentCoursePo> tbStudentCoursePos =studentCourseMapper.findByStuIdd(stuId);
+       /* List<TbStudentCoursePo> tbStudentCoursePos =studentCourseMapper.findByStuIdd(stuId);
         if (tbStudentCoursePos.isEmpty()){
             return null;
         }
@@ -143,20 +153,22 @@ public class StudentSchoolServiceImpl implements StudentSchoolService {
             BeanUtils.copyProperties(tbStudentCoursePo,tbStudentCourseVo);
             tbStudentCourseVos.add(tbStudentCourseVo);
         }
-        tbStudentSchoolVo.setList(tbStudentCourseVos);
+        tbStudentSchoolVo.setList(tbStudentCourseVos);*/
 
         return tbStudentSchoolVo;
     }
 
     /**
-     * 根据身份证号查找学号
+     * 根据身份证号查找机构信息
      * @param cardId
      * @return
      */
     @Override
-    public String findStuIdByCardId(String cardId) {
-        String stuId=studentSchoolMapper.findStuIdByCardId(cardId);
+    public TbStudentSchoolVo findByCardId(String cardId) {
+        TbStudentSchoolPo tbStudentSchoolPo=studentSchoolMapper.findByCardId(cardId);
 
-        return stuId;
+        TbStudentSchoolVo tbStudentSchoolVo = new TbStudentSchoolVo();
+        BeanUtils.copyProperties(tbStudentSchoolPo,tbStudentSchoolVo);
+        return tbStudentSchoolVo;
     }
 }
