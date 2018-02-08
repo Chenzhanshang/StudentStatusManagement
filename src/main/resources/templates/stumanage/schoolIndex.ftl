@@ -41,7 +41,7 @@
                             <span class="fa fa-table"></span>学生机构信息
                           </span>
                         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;输入学号：
-                            <input type="text" class=" btn-default btn-sm w85 fw600 ml10" v-model="queryStuId">
+                        <input type="text" class=" btn-default btn-sm w85 fw600 ml10" v-model="queryStuId">
 
                         <button class="btn btn-default btn-sm w75 fw600 ml10" @click="findByStuId()">
                             学号查找
@@ -122,7 +122,7 @@
                                     </label>
                                     <label class="field prepend-icon">
                                         <div>ddd</div>
-                                        </label>
+                                    </label>
                                     </label>
                                 </div>
                             </div>
@@ -144,7 +144,8 @@
                                     </label>
                                     <label class="field select">
                                         <select v-model="updateSchool.academy">
-                                            <option v-for="academy in academys" v-bind:value="academy">{{academy}}</option>
+                                            <option :value="updateSchool.academy">{{updateSchool.academy}}</option>
+                                            <option v-for="academy in academys" v-bind:value="academy" v-if="academy !== updateSchool.academy">{{academy}}</option>
                                         </select>
                                         <i class="arrow double"></i>
                                     </label>
@@ -156,7 +157,8 @@
                                     </label>
                                     <label class="field select">
                                         <select v-model="updateSchool.department">
-                                            <option v-for="department in departments" v-bind:value="department">{{department}}</option>
+                                            <option :value="updateSchool.department">{{updateSchool.department}}</option>
+                                            <option v-for="department in departments" v-bind:value="department" v-if="department !== updateSchool.department">{{department}}</option>
                                         </select>
                                         <i class="arrow double"></i>
                                     </label>
@@ -192,142 +194,145 @@
 
 </div>
 <#include '../include/footer_js.ftl'/>
-    <script src="<@s.url '/assets/js/jquery.pagination.min.js'/>"></script>
-    <script src="<@s.url '/assets/plugins/ueditor/ueditor.config.js'/>"></script>
-    <script src="<@s.url '/assets/plugins/ueditor/ueditor.all.min.js'/>"></script>
-    <script>
-        var app = new Vue({
-            el:"#main",
-            data:{
-                schools:[],
-                updateSchool:{
-                    stuId:"",
-                    stuName:"",
-                    academy:"",
-                    department:"",
-                    clazz:""
-                },
-                academys:[],
-                departments:[],
-                queryStuId:"",
-                searchSchoolResult:"",
-                record:{
-                    page:1,
-                    pageSize:10
-                }
-                },
-            created:function () {
-                this.queryAll();
+<script src="<@s.url '/assets/js/jquery.pagination.min.js'/>"></script>
+<script src="<@s.url '/assets/plugins/ueditor/ueditor.config.js'/>"></script>
+<script src="<@s.url '/assets/plugins/ueditor/ueditor.all.min.js'/>"></script>
+<script>
+    var app = new Vue({
+        el:"#main",
+        data:{
+            schools:[],
+            updateSchool:{
+                stuId:"",
+                stuName:"",
+                academy:"",
+                department:"",
+                clazz:""
             },
-            watch: {
-                'updateSchool.academy':function () {
+            academys:[],
+            departments:[],
+            queryStuId:"",
+            searchSchoolResult:"",
+            record:{
+                page:1,
+                pageSize:10
+            }
+        },
+        created:function () {
+            this.queryAll();
+        },
+        watch: {
+            'updateSchool.academy':function (newVal) {
+                console.log(newVal);
+                if(newVal){
                     this.queryDepartment();
-                },
-                'record.page': function () {
-                    this.queryAll();
                 }
             },
-            methods:{
-                chuan:function (item) {
-                    this.$http.get(contentPath+"/api/school/findByStuId",{
-                        params:{
-                            stuId:item
-                        }
-                    }).then(
-                            function (response) {
-                                this.updateSchool=response.data.data;
-                            },function (response) {
-                                sweetAlert(response.data.message,"错误码"+response.data.code , "error");
-                            }
-                    );
-                    this.queryAcademy();
-                },
-                updateSchoolSave: function () {
-                    this.$http.post(contentPath+"/api/school/update",this.updateSchool).then(
-                            function (response) {
-                                sweetAlert("修改成功", "修改成功" , "info");
-                            },function (response) {
-                                sweetAlert(response.data.message,"错误码"+response.data.code , "error");
-                            })
-                },
-                queryAcademy:function () {
-                    this.$http.get(contentPath+"/api/school/queryAcademy").then(
-                            function (response) {
-                                this.academys=response.data.data;
-                            },function (response) {
-                                sweetAlert(response.data.message,"错误码"+response.data.code , "error");
-                            }
-                    )
-                },
-                findByStuId :function () {
-                    if(this.queryStuId===""){
-                        sweetAlert("请输入学号", "请输入学号" , "info");
+            'record.page': function () {
+                this.queryAll();
+            }
+        },
+        methods:{
+            chuan:function (item) {
+                this.$http.get(contentPath+"/api/school/findByStuId",{
+                    params:{
+                        stuId:item
                     }
-                    else{
-                        this.$http.get(contentPath+"/api/school/findByStuId", {
-                            params: {
-                                stuId:this.queryStuId
-                            }
+                }).then(
+                        function (response) {
+                            this.updateSchool=response.data.data;
+                        },function (response) {
+                            sweetAlert(response.data.message,"错误码"+response.data.code , "error");
+                        }
+                );
+                this.queryAcademy();
+            },
+            updateSchoolSave: function () {
+                this.$http.post(contentPath+"/api/school/update",this.updateSchool).then(
+                        function (response) {
+                            sweetAlert("修改成功", "修改成功" , "info");
+                        },function (response) {
+                            sweetAlert(response.data.message,"错误码"+response.data.code , "error");
                         })
-                                .then(
-                                        function (response) {
-                                            $("#callBackPager").page("destroy");
-                                            this.schools=[];
-                                            this.searchSchoolResult=response.data.data;
-                                        },function (response) {
-                                            sweetAlert("出错了！","没有查该学生的学院信息,请重新输入 ", "error");
-                                        })
-                    }
-                },
-                queryAll:function () {
-                    this.$http.post(contentPath+"/api/school/findAll",this.record).then(
-                            function (response) {
-                                this.schools=response.data.data.list;
-                                var temp = this;
-                                $("#callBackPager").page({
-                                    total: response.data.data.total,
-                                    pageSize: response.data.data.pageSize,
-                                    firstBtnText: '首页',
-                                    lastBtnText: '尾页',
-                                    prevBtnText: '上一页',
-                                    nextBtnText: '下一页',
-                                    showInfo: true,
-                                    showJump: true,
-                                    jumpBtnText: '跳转',
-                                    infoFormat: '{start} ~ {end}条，共{total}条'
-                                }, response.data.data.pageNum)
-                                        .on("pageClicked", function (event, pageIndex) {
-                                            temp.record.page = pageIndex + 1;
-                                        }).on('jumpClicked', function (event, pageIndex) {
-                                    temp.record.page = pageIndex + 1;
-                                });
-                            },function (response) {
-                                sweetAlert(response.data.message, "错误码" + response.data.code, "error");
-                            })
-                },
-                queryDepartment:function () {
-                    this.$http.get(contentPath+"/api/school/queryDepartment",{
-                        params:{
-                            academyName:this.updateSchool.academy
+            },
+            queryAcademy:function () {
+                this.$http.get(contentPath+"/api/school/queryAcademy").then(
+                        function (response) {
+                            this.academys=response.data.data;
+                        },function (response) {
+                            sweetAlert(response.data.message,"错误码"+response.data.code , "error");
                         }
-                    }).then(
-                            function (response) {
-                                this.departments=response.data.data;
-                            },function (response) {
-                                sweetAlert(response.data.message,"错误码"+response.data.code , "error");
-                            }
-                    )
+                )
+            },
+            findByStuId :function () {
+                if(this.queryStuId===""){
+                    sweetAlert("请输入学号", "请输入学号" , "info");
                 }
-
-
+                else{
+                    this.$http.get(contentPath+"/api/school/findByStuId", {
+                        params: {
+                            stuId:this.queryStuId
+                        }
+                    })
+                            .then(
+                                    function (response) {
+                                        $("#callBackPager").page("destroy");
+                                        this.schools=[];
+                                        this.searchSchoolResult=response.data.data;
+                                    },function (response) {
+                                        sweetAlert("出错了！","没有查该学生的学院信息,请重新输入 ", "error");
+                                    })
+                }
+            },
+            queryAll:function () {
+                this.$http.post(contentPath+"/api/school/findAll",this.record).then(
+                        function (response) {
+                            this.schools=response.data.data.list;
+                            var temp = this;
+                            $("#callBackPager").page({
+                                total: response.data.data.total,
+                                pageSize: response.data.data.pageSize,
+                                firstBtnText: '首页',
+                                lastBtnText: '尾页',
+                                prevBtnText: '上一页',
+                                nextBtnText: '下一页',
+                                showInfo: true,
+                                showJump: true,
+                                jumpBtnText: '跳转',
+                                infoFormat: '{start} ~ {end}条，共{total}条'
+                            }, response.data.data.pageNum)
+                                    .on("pageClicked", function (event, pageIndex) {
+                                        temp.record.page = pageIndex + 1;
+                                    }).on('jumpClicked', function (event, pageIndex) {
+                                temp.record.page = pageIndex + 1;
+                            });
+                        },function (response) {
+                            sweetAlert(response.data.message, "错误码" + response.data.code, "error");
+                        })
+            },
+            queryDepartment:function () {
+                this.$http.get(contentPath+"/api/school/queryDepartment",{
+                    params:{
+                        academyName:this.updateSchool.academy
+                    }
+                }).then(
+                        function (response) {
+                            this.departments=response.data.data;
+                        },function (response) {
+                            sweetAlert(response.data.message,"错误码"+response.data.code , "error");
+                        }
+                )
             }
 
 
+        }
 
 
-        })
 
-    </script>
+
+    })
+
+</script>
 </body>
 
 </html>
