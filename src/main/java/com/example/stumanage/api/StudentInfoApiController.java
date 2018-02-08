@@ -50,7 +50,6 @@ public class StudentInfoApiController {
     @PostMapping("/save")
     public ResponseResult saveInfo(@RequestBody TbStudentInfoVo tbStudentInfoVo) {
         tbStudentInfoVo.setCreatedBy("带土");
-        tbStudentInfoVo.setSchoolTime(new Date());
         tbStudentInfoVo.setModifiedBy("带土");
         studentInfoService.saveInfo(tbStudentInfoVo);
 

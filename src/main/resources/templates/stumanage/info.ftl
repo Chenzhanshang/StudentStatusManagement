@@ -372,7 +372,14 @@
                                     <label class="field-label">入学时间</label>
                                     <label class="field prepend-icon">
                                         <div class="form-group">
-                                            <input type="text" class="gui-input" v-model="updateInfo.schoolTime">
+                                            <label class="field">
+                                                <el-date-picker
+                                                        v-model="updateInfo.schoolTime"
+                                                        placeholder="选择日期时间"
+                                                        format="yyyy-MM-dd"
+                                                        align="right">
+                                                </el-date-picker>
+                                            </label>
                                         </div>
                                     </label>
                                 </div>
@@ -524,7 +531,14 @@
                             <label class="field-label">入学时间</label>
                             <label class="field prepend-icon">
                                 <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="addInfo.schoolTime">
+                                    <label class="field">
+                                        <el-date-picker
+                                                v-model="addInfo.schoolTime"
+                                                placeholder="选择日期时间"
+                                                format="yyyy-MM-dd"
+                                                align="right">
+                                        </el-date-picker>
+                                    </label>
                                 </div>
                             </label>
                         </div>

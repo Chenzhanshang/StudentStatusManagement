@@ -1,5 +1,6 @@
 package com.example.stumanage.vo;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.example.stumanage.common.PageVo;
 import lombok.Data;
 

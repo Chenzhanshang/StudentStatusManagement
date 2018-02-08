@@ -1,5 +1,6 @@
 package com.example.stumanage.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
 import java.util.Date;
@@ -68,6 +69,7 @@ public class TbStudentInfoPo {
     /**
      * 入学时间
      */
+
     private  Date schoolTime;
 
     /**
@@ -88,5 +90,6 @@ public class TbStudentInfoPo {
     /**
      * 修改时间
      */
+
     private Date modifiedTime;
 }

@@ -1,5 +1,6 @@
 package com.example.stumanage.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
 import java.util.Date;
@@ -61,5 +62,6 @@ public class TbStudentCoursePo {
     /**
      * 修改时间
      */
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
     private Date modifiedTime;
 }
