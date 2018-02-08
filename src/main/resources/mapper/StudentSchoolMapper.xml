@@ -31,6 +31,12 @@
     <select id="findByCardId" resultType="com.example.stumanage.domain.TbStudentSchoolPo">
         SELECT * FROM tb_student_school WHERE card_id=#{cardId}
     </select>
+    <select id="findAcademy" resultType="java.lang.String">
+        SELECT DISTINCT academy FROM tb_academy
+    </select>
+    <select id="findDepartment" resultType="java.lang.String">
+        SELECT DISTINCT department FROM tb_academy WHERE academy=#{academyName}
+    </select>
     <update id="other">
         UPDATE tb_student_school
         SET experience=#{experience} WHERE stu_id=#{stuId}

@@ -66,6 +66,28 @@ public class StudentSchoolServiceImpl implements StudentSchoolService {
         studentSchoolMapper.other(experience,stuId );
     }
 
+    /**
+     * 查找所有学院
+     * @return
+     */
+    @Override
+    public List<String> findAcademy() {
+        List<String> list =studentSchoolMapper.findAcademy();
+
+        return list;
+    }
+
+    /**
+     * 查找该学院下的所有系
+     * @param academyName
+     * @return
+     */
+    @Override
+    public List<String> findDepartment(String academyName) {
+        List<String> list = studentSchoolMapper.findDepartment(academyName);
+
+        return list;
+    }
 
     /**
      * 插入学生机构信息

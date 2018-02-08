@@ -115,4 +115,18 @@ public class StudentSchoolApiController {
 
         return new ResponseResult<>(tbStudentSchoolVo);
     }
+
+    @GetMapping("/queryAcademy")
+    public  ResponseResult<List<String>> findAcademy(){
+        List<String> list =studentSchoolService.findAcademy();
+
+        return new ResponseResult<>(list);
+    }
+
+    @GetMapping("/queryDepartment")
+    public  ResponseResult<List<String>> findDepartment(@RequestParam String academyName){
+        List<String> list =studentSchoolService.findDepartment(academyName);
+
+        return new ResponseResult<>(list);
+    }
 }

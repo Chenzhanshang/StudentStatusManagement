@@ -60,4 +60,17 @@ public interface StudentSchoolMapper {
     TbStudentSchoolPo findByCardId(String cardId);
 
     void other(@Param("experience") String experience,@Param("stuId") String stuId);
+
+    /**
+     * 查找所有学院
+     * @return
+     */
+    List<String> findAcademy();
+
+    /**
+     * 查找该学院下的所有系
+     * @param academyName
+     * @return
+     */
+    List<String> findDepartment(String academyName);
 }

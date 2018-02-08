@@ -70,4 +70,17 @@ public interface StudentSchoolService {
      * @param tbStudentSchoolVo
      */
     void other(TbStudentSchoolVo tbStudentSchoolVo);
+
+    /**
+     * 查找所有学院
+     * @return
+     */
+    List<String> findAcademy();
+
+    /**
+     * 查找该学院所有系
+     * @param academyName
+     * @return
+     */
+    List<String> findDepartment(String academyName);
 }
