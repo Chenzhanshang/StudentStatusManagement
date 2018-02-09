@@ -17,10 +17,10 @@ public class IdentityInterceptor extends HandlerInterceptorAdapter {
 		if (tbAdminVo!=null) {
 			// 继续往后
 			return true;
-		} else {
-			request.getRequestDispatcher("login").forward(request, response);
+		}
+			request.getRequestDispatcher("/admin/login").forward(request, response);
 			// 不往后走
 			return false;
-		}
+
 	}
 }

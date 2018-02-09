@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-
 /**
  * 时间显示格式转化配置
  */
@@ -29,13 +28,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		return converter;
 	}
 
- /*   @Override
+    @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
         //对来自/* 这个链接来的请求进行拦截
         registry.addInterceptor(new IdentityInterceptor()).addPathPatterns("/*");
         registry.addInterceptor(new IdentityInterceptor()).excludePathPatterns("/admin/login");
-    }*/
-
+    }
 
 }
