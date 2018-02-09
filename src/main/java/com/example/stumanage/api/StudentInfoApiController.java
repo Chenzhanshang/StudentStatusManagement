@@ -7,9 +7,7 @@ import com.example.stumanage.vo.TbStudentInfoVo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 学生学籍api
@@ -69,7 +67,5 @@ public class StudentInfoApiController {
 
         return new ResponseResult();
     }
-
-
 
 }

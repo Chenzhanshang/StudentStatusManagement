@@ -1,6 +1,5 @@
 package com.example.stumanage.domain;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
 import java.util.Date;

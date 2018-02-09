@@ -29,7 +29,6 @@ public class StudentSchoolApiController {
      */
     @PostMapping("/save")
     public ResponseResult save(@RequestBody TbStudentSchoolVo tbStudentSchoolVo){
-
         tbStudentSchoolVo.setCreatedBy("daitu");
         tbStudentSchoolVo.setModifiedBy("daitu");
         studentSchoolService.save(tbStudentSchoolVo);
@@ -44,8 +43,8 @@ public class StudentSchoolApiController {
      */
     @PostMapping("/update")
     public  ResponseResult update(@RequestBody TbStudentSchoolVo tbStudentSchoolVo){
-
         studentSchoolService.update(tbStudentSchoolVo);
+
         return  new ResponseResult();
     }
 
@@ -56,8 +55,8 @@ public class StudentSchoolApiController {
      */
     @PostMapping("/other")
     public  ResponseResult other(@RequestBody TbStudentSchoolVo tbStudentSchoolVo){
-
         studentSchoolService.other(tbStudentSchoolVo);
+
         return  new ResponseResult();
     }
 

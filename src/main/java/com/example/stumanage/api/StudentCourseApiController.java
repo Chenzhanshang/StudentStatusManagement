@@ -6,7 +6,6 @@ import com.example.stumanage.service.StudentCourseService;
 import com.example.stumanage.service.StudentSchoolService;
 import com.example.stumanage.vo.TbStudentCourseVo;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import java.util.List;
 

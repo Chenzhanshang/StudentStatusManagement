@@ -18,4 +18,14 @@ public class AdminController {
     public String getIndex(){
         return "/stumanage/admin";
     }
+
+    @GetMapping("/index")
+    public String index(){
+        return "/index";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "/login";
+    }
 }

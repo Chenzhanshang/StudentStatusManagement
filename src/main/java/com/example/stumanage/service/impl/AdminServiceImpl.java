@@ -62,6 +62,9 @@ public class AdminServiceImpl implements AdminService {
     public TbAdminVo findByUserName(String userName) {
 
         TbAdminPo tbAdminPo=adminMapper.findByUserName(userName);
+        if (tbAdminPo==null){
+            return null;
+        }
         TbAdminVo tbAdminVo = new TbAdminVo();
         BeanUtils.copyProperties(tbAdminPo,tbAdminVo);
         return tbAdminVo;
