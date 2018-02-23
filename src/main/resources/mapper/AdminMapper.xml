@@ -19,4 +19,7 @@
     <select id="findByUserName" resultType="com.example.stumanage.domain.TbAdminPo">
         SELECT * FROM tb_admin WHERE user_name=#{userName}
     </select>
+    <select id="findByAll" resultType="com.example.stumanage.vo.TbAdminVo">
+        SELECT * FROM tb_admin
+    </select>
 </mapper>

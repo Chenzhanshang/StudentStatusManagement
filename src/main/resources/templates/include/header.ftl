@@ -9,13 +9,13 @@
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
             <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown" aria-expanded="false">
-                <img src="<@s.url "/assets/images/avatars/1.jpg"/>" alt="avatar" class="mw30 br64 mr15">
+               <#-- <span>${tbAdmin.nickName!}</span>-->
                         <b></b>
                 <span class="caret caret-tp hidden-xs"></span>
             </a>
             <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
                 <li class="list-group-item">
-                    <a href="<@s.url '/logout'/>" class="animated animated-short fadeInUp">
+                    <a href="<@s.url '/admin/logout'/>" class="animated animated-short fadeInUp">
                         <span class="fa fa-power-off"></span> 登出 </a>
                 </li>
             </ul>

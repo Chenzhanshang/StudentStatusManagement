@@ -1,6 +1,10 @@
 package com.example.stumanage.mapper;
 
 import com.example.stumanage.domain.TbAdminPo;
+import com.example.stumanage.vo.TbAdminVo;
+import com.example.stumanage.vo.TbStudentInfoVo;
+
+import java.util.List;
 
 /**
  * 管理员映射接口
@@ -34,4 +38,6 @@ public interface AdminMapper {
      * @return
      */
     TbAdminPo findByUserName(String userName);
+
+    List<TbAdminVo> findByAll(TbAdminVo record);
 }

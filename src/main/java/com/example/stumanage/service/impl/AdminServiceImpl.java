@@ -5,9 +5,11 @@ import com.example.stumanage.domain.TbAdminPo;
 import com.example.stumanage.mapper.AdminMapper;
 import com.example.stumanage.service.AdminService;
 import com.example.stumanage.vo.TbAdminVo;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 管理员实现类
@@ -68,5 +70,13 @@ public class AdminServiceImpl implements AdminService {
         TbAdminVo tbAdminVo = new TbAdminVo();
         BeanUtils.copyProperties(tbAdminPo,tbAdminVo);
         return tbAdminVo;
+    }
+
+    @Override
+    public List<TbAdminVo> findByAll(TbAdminVo record) {
+        PageHelper.startPage(record.getPage(),record.getPageSize());
+
+        List<TbAdminVo> list = adminMapper.findByAll(record);
+        return list;
     }
 }

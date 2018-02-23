@@ -3,7 +3,7 @@
 <html lang="zh_CN">
 <head>
     <meta charset="utf-8">
-    <title>管理员设置</title>
+    <title>用户设置</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <#include '../include/baselink.ftl'>
     <link rel="stylesheet" type="text/css" href="<@s.url '/assets/css/jquery.pagination.css'/>">
@@ -35,10 +35,9 @@
         </header>
         <section id="content" class="table-layout animated fadeIn">
             <div class="tray tray-center">
-                欢迎您！wefwefwe
-                <button data-toggle="modal" data-target="#myModalEditPass"  @click="" class="button btn-primary">修改管理员密码</button>
-                <button data-toggle="modal" data-target="#myModalEditPhone" @click="" class="button btn-primary">修改手机号</button>
-                <button  @click="clear()" class="button btn-primary">退出该用户</button>
+                欢迎您！${tbAdmin.nickName!}
+                <button data-toggle="modal" data-target="#myModalEditPass"   class="button btn-primary">修改管理员密码</button>
+                <button data-toggle="modal" data-target="#myModalEditPhone"  class="button btn-primary">修改手机号</button>
             </div>
         </section>
     <#include '../include/footer.ftl' />
@@ -58,7 +57,7 @@
                             <label class="field-label">旧密码</label>
                             <label class="field prepend-icon">
                                 <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="admin.passWord">
+                                    <input type="password" class="gui-input" v-model="admin.passWord">
                                 </div>
                             </label>
                         </div>
@@ -66,7 +65,7 @@
                             <label class="field-label">新密码</label>
                             <label class="field prepend-icon">
                                 <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="admin.passWordNew">
+                                    <input type="password" class="gui-input" v-model="admin.passWordNew">
                                 </div>
                             </label>
                         </div>
@@ -74,7 +73,7 @@
                             <label class="field-label">再次输入新密码</label>
                             <label class="field prepend-icon">
                                 <div class="form-group">
-                                    <input type="text" class="gui-input" v-model="admin.passWordNewTwo">
+                                    <input type="password" class="gui-input" v-model="admin.passWordNewTwo">
                                 </div>
                             </label>
                         </div>
@@ -132,10 +131,60 @@
         var aa = new Vue({
             el: "#main",
             data: {
-
+                admin:{
+                    passWord:"",
+                    passWordNew:"",
+                    passWordNewTwo:"",
+                    phone:"",
+                    phoneNew:""
+                },
+                tbAdmin:{
+                    id:"",
+                    nickName:"",
+                    userName:"",
+                    passWord:"",
+                    phone:""
+                }
             },
+            created:function () {
+                this.tbAdmin=${tbAdmin};
+            }
             methods: {
+                editPassSave: function () {
+                    if (this.admin.passWord === this.tbAdmin.passWord) {
+                        if (this.admin.passWordNew === this.admin.passWordNewTwo && this.admin.passWordNew !== "") {
+                                this.tbAdmin.passWord = this.admin.passWordNew;
+                            this.$http.post(contentPath + "/api/admin/update", this.tbAdmin).then(
+                                    function (response) {
+                                        sweetAlert("修改成功", "下次登陆请用新密码", "info");
+                                    }, function (response) {
+                                        sweetAlert(response.data.message, "错误码" + response.data.code, "error");
+                                    })
+                        } else {
+                            sweetAlert("修改失败", "两次新密码输入不一致", "info");
+                        }
+                    } else {
+                        sweetAlert("修改失败", "请输入正确的现有密码", "info");
+                    }
 
+                },
+                editPhoneSave: function () {
+                    if (this.admin.phone === this.tbAdmin.phone) {
+                        if (this.admin.phoneNew===""){
+                            this.tbAdmin.phone=this.admin.phone;
+                            this.$http.post(contentPath + "/api/admin/update", this.tbAdmin).then(
+                                    function (response) {
+                                        sweetAlert("修改成功", "修改成功", "info");
+                                    }, function (response) {
+                                        sweetAlert(response.data.message, "错误码" + response.data.code, "error");
+                                    })
+                        }else{
+                            sweetAlert("修改失败", "手机号不能为空", "info");
+                        }
+                    }else {
+                        sweetAlert("修改失败", "请输入正确的现有手机号", "info");
+                    }
+                }
             }
         })
     </script>

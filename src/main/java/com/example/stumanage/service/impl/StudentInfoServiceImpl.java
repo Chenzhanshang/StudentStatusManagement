@@ -8,7 +8,6 @@ import com.example.stumanage.mapper.StudentInfoMapper;
 import com.example.stumanage.mapper.StudentSchoolMapper;
 import com.example.stumanage.service.StudentInfoService;
 import com.example.stumanage.vo.TbStudentInfoVo;
-import com.example.stumanage.vo.TbStudentSchoolVo;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;

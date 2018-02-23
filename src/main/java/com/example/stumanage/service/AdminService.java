@@ -2,6 +2,8 @@ package com.example.stumanage.service;
 
 import com.example.stumanage.vo.TbAdminVo;
 
+import java.util.List;
+
 /**
  * 管理员service接口
  */
@@ -32,4 +34,6 @@ public interface AdminService {
      * @return
      */
     TbAdminVo findByUserName(String userName);
+
+    List<TbAdminVo> findByAll(TbAdminVo record);
 }

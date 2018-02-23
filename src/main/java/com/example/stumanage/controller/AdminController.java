@@ -1,9 +1,12 @@
 package com.example.stumanage.controller;
 
 
+import com.example.stumanage.vo.TbAdminVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 管理员跳转
@@ -19,6 +22,16 @@ public class AdminController {
         return "/stumanage/admin";
     }
 
+    @GetMapping("/setting")
+    public String getSetting(HttpServletRequest request){
+       TbAdminVo tbAdminVo= (TbAdminVo)request.getSession().getAttribute("tbAdmin");
+        String admin="admin";
+       if((tbAdminVo.getUserName().equals(admin))){
+            return "/stumanage/setting";
+        }
+        return "/stumanage/settings";
+    }
+
     @GetMapping("/index")
     public String index(){
         return "/index";
@@ -27,5 +40,12 @@ public class AdminController {
     @GetMapping("/login")
     public String login(){
         return "/login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request){
+
+        request.getSession().removeAttribute("tbAdmin");
+        return "redirect: /login";
     }
 }

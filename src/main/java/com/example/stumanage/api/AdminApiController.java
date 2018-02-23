@@ -3,9 +3,11 @@ package com.example.stumanage.api;
 import com.example.stumanage.service.AdminService;
 import com.example.stumanage.common.ResponseResult;
 import com.example.stumanage.vo.TbAdminVo;
+import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 管理员api
@@ -27,7 +29,7 @@ public class AdminApiController {
         return new ResponseResult();
     }
 
-    @PostMapping("/find")
+    @RequestMapping(value = "/find",method=RequestMethod.POST)
     public  ResponseResult<String> findByUserName(@RequestBody TbAdminVo tbAdminVo, HttpServletRequest request){
         TbAdminVo result = adminService.findByUserName(tbAdminVo.getUserName());
         if(result == null){
@@ -58,6 +60,12 @@ public class AdminApiController {
         return new ResponseResult();
     }
 
+    @PostMapping("/findAll")
+    public ResponseResult<PageInfo<TbAdminVo>> findAll(@RequestBody TbAdminVo record) {
+
+        List<TbAdminVo> tbAdminVos = adminService.findByAll(record);
+        return new ResponseResult<>(new PageInfo<>(tbAdminVos));
+    }
 
 
 

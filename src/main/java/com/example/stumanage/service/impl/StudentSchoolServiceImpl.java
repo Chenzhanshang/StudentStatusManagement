@@ -2,12 +2,10 @@ package com.example.stumanage.service.impl;
 
 
 import com.example.stumanage.common.AssertUtils;
-import com.example.stumanage.domain.TbStudentCoursePo;
 import com.example.stumanage.domain.TbStudentSchoolPo;
 import com.example.stumanage.mapper.StudentCourseMapper;
 import com.example.stumanage.mapper.StudentSchoolMapper;
 import com.example.stumanage.service.StudentSchoolService;
-import com.example.stumanage.vo.TbStudentCourseVo;
 import com.example.stumanage.vo.TbStudentSchoolVo;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

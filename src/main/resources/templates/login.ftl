@@ -15,10 +15,14 @@
             <div class="admin-form theme-info mw500">
                 <div class="panel mt30 mb25">
                         <div class="panel-body bg-light p25 pb15">
+
+                            <div class="section-divider mv30">
+                                <span>欢迎使用学生档案管理系统</span>
+                            </div>
                             <div class="section">
                                 <label for="username" class="field-label text-muted fs18 mb10">账号</label>
                                 <label for="username" class="field prepend-icon">
-                                    <input  v-model="admin.userName" class="gui-input">
+                                    <input type="text" v-model="admin.userName" class="gui-input">
                                     <label for="username" class="field-icon">
                                         <i class="fa fa-user"></i>
                                     </label>
@@ -27,7 +31,7 @@
                             <div class="section">
                                 <label for="username" class="field-label text-muted fs18 mb10">密码</label>
                                 <label for="password" class="field prepend-icon">
-                                    <input  v-model="admin.passWord" class="gui-input">
+                                    <input  type="password" v-model="admin.passWord" class="gui-input">
                                     <label for="password" class="field-icon">
                                         <i class="fa fa-lock"></i>
                                     </label>
@@ -40,7 +44,7 @@
                                     <button data-toggle="modal" data-target="#myModal"  class="button btn-primary">注册</button>
                                 </div>
                                 <div class="pull-right">
-                                    <button class="button btn-primary block" @click="login()">登录</button>
+                                    <button class="button btn-primary block" @click="login(admin)">登录</button>
                                 </div>
                             </div>
                         </div>
@@ -124,11 +128,11 @@
             }
         },
         methods:{
-            login:function () {
+            login:function (admin) {
                 if (this.admin.userName === "" || this.admin.passWord === "") {
-                    sweetAlert("对不起", "请输入账号和密码", "info");
+                    sweetAlert("登陆失败", "请输入账号和密码", "info");
                 } else {
-                    this.$http.post(contentPath + "/api/admin/find", this.admin).then(
+                    this.$http.post(contentPath + "/api/admin/find",admin).then(
                             function (response) {
                                 if (response.data.code === 1000) {
                                     sweetAlert("登陆失败", response.data.message, "info");
