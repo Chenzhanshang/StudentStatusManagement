@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -32,12 +33,16 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void saveAdmin(TbAdminVo tbAdminVo) {
-
+    public TbAdminVo saveAdmin(TbAdminVo tbAdminVo) {
         inputCheck(tbAdminVo);
-        TbAdminPo tbAdminPo = new TbAdminPo();
-        BeanUtils.copyProperties(tbAdminVo, tbAdminPo);
-        adminMapper.saveAdmin(tbAdminPo);
+        TbAdminPo tbAdmin=adminMapper.findByUserName(tbAdminVo.getUserName());
+        if (tbAdmin==null){
+            TbAdminPo tbAdminPo = new TbAdminPo();
+            BeanUtils.copyProperties(tbAdminVo, tbAdminPo);
+            adminMapper.saveAdmin(tbAdminPo);
+            return tbAdminVo;
+        }
+        return null;
     }
 
     @Override

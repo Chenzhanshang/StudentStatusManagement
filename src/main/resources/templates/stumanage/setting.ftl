@@ -36,7 +36,18 @@
         <section id="content" class="table-layout animated fadeIn">
             <div class="tray tray-center">
                 <div class="panel" id="spy7">
-
+                    <div class="panel" id="spy7">
+                        <div class="panel-heading">
+                              <span class="panel-controls">
+                            <a href="#" class="btn-default w75 fw600 ml10" data-toggle="modal"
+                               data-target="#myModalAdd">
+                                添加管理员
+                            </a>
+                            <a href="#" class="panel-control-collapse"></a>
+                            <a href="#" class="panel-control-fullscreen"></a>
+                        </span>
+                        </div>
+                    </div>
                     <div class="panel-body pn">
                         <div class="bs-component">
                             <div class="table-responsive">
@@ -58,7 +69,7 @@
                                         <td align="center">{{admin.userName}}</td>
                                         <td align="center">{{admin.passWord}}</td>
                                         <td align="center">{{admin.phone}}</td>
-                                        <td align="center">
+                                        <td align="center" v-if="admin.userName!=='admin'">
                                             <button data-toggle="modal" data-target="#myModalDel" @click="delAdmin(admin)">删除</button>
                                         </td>
                                     </tr>
@@ -86,6 +97,67 @@
         <!-- End: Content -->
     <#include '../include/footer.ftl' />
     </section>
+    <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title" id="myModalLabel">添加管理员</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="admin-form">
+                        <div class="section">
+                            <label class="field-label">姓名</label>
+                            <label class="field prepend-icon">
+                                <div class="form-group">
+                                    <input type="text" class="gui-input" v-model="register.nickName">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="section">
+                            <label class="field-label">用户名</label>
+                            <label class="field prepend-icon">
+                                <div class="form-group">
+                                    <input type="text" class="gui-input" v-model="register.userName">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="section">
+                            <label class="field-label">密码</label>
+                            <label class="field prepend-icon">
+                                <div class="form-group">
+                                    <input type="password" class="gui-input" v-model="register.passWord">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="section">
+                            <label class="field-label">再次输入新密码</label>
+                            <label class="field prepend-icon">
+                                <div class="form-group">
+                                    <input type="password" class="gui-input" v-model="register.passWordTwo">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="section">
+                            <label class="field-label">手机号</label>
+                            <label class="field prepend-icon">
+                                <div class="form-group">
+                                    <input type="text" class="gui-input" v-model="register.phone">
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" @click="registerM()">确定注册</button>
+                        <button type="button" class="btn btn-primary"  data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 <#include '../include/footer_js.ftl'/>
     <script src="<@s.url '/assets/js/jquery.pagination.min.js'/>"></script>
@@ -95,11 +167,21 @@
         var app = new Vue({
             el:"#main",
             data:{
+                register:{
+                    nickName:"",
+                    userName:"",
+                    passWord:"",
+                    passWordTwo:"",
+                    phone:""
+                },
                 admins:[],
                 record:{
                     page:1,
                     pageSize:10
                 }
+            },
+            created:function () {
+                this.queryAll();
             },
             watch: {
                 'record.page': function () {
@@ -134,18 +216,39 @@
                             })
                 },
                 delAdmin:function (admin) {
-                    this.$http.get(contentPath+"/api/admin/del",{
-                        params:{
-                            id:admin.id
-                        }
-                    }).then(
-                        function (response) {
-                            sweetAlert("删除成功", "删除成功" , "info");
-                            location.reload();
-                        },function (response) {
-                                sweetAlert(response.data.message,"错误码"+response.data.code , "error");
-                            })
-                        }
+                    if(confirm("确定删除吗？")){
+                        this.$http.get(contentPath+"/api/admin/del",{
+                            params:{
+                                id:admin.id
+                            }
+                        }).then(
+                                function (response) {
+                                    sweetAlert("删除成功", "删除成功" , "info");
+                                    location.reload();
+                                },function (response) {
+                                    sweetAlert(response.data.message,"错误码"+response.data.code , "error");
+                                })
+                    }
+                        },
+                registerM:function () {
+                            if (this.register.passWord === this.register.passWordTwo ) {
+                                this.$http.post(contentPath+"/api/admin/register",this.register).then(
+                                        function (response) {
+                                            if (response.data.code === 1005) {
+                                                sweetAlert("错误码"+response.data.code, response.data.message, "error");
+                                            }else {
+                                                sweetAlert(""+response.data.code, response.data.message, "info");
+                                                location.reload();
+                                            }
+                                        }, function (response) {
+                                            sweetAlert(response.data.message, "错误码" + response.data.code, "error");
+                                        })
+                            } else if(this.register.passWordTwo !== ""){
+                                sweetAlert("添加失败", "密码不能为空", "info");
+                            }else {
+                            sweetAlert("添加失败", "两次新密码输入不一致", "info");
+                                }
+                    }
                 }
         })
 

@@ -283,15 +283,16 @@
                             
                             )},
                         delCourse:function (course) {
-                            this.$http.get(contentPath+"/api/course/del/"+course.id)
+                            if(confirm("确定要删除此课程吗？")){
+                            this.$http.get(contentPath + "/api/course/del/" + course.id)
                                     .then(function (response) {
-                                        sweetAlert("删除成功", "删除课程信息成功" , "info");
-                                        location.reload();
-                                    },function (response) {
-                                        sweetAlert(response.data.message, "错误码" + response.data.code, "error");
-                                    }
-
-                            )
+                                                sweetAlert("删除成功", "删除课程信息成功", "info");
+                                                location.reload();
+                                            }, function (response) {
+                                                sweetAlert(response.data.message, "错误码" + response.data.code, "error");
+                                            }
+                                    )
+                        }
                         }
                             
                         

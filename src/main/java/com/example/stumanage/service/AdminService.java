@@ -11,10 +11,11 @@ public interface AdminService {
 
 
     /**
-     * 注册管理员
+     * z注册管理员
      * @param tbAdminVo
+     * @return
      */
-    void saveAdmin(TbAdminVo tbAdminVo);
+    TbAdminVo saveAdmin(TbAdminVo tbAdminVo);
 
     /**
      * 删除管理员账户

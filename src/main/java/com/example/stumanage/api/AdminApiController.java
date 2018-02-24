@@ -23,10 +23,13 @@ public class AdminApiController {
     private AdminService adminService;
 
     @PostMapping("/register")
-    public ResponseResult saveAdmin(@RequestBody TbAdminVo tbAdminVo){
-        adminService.saveAdmin(tbAdminVo);
-
-        return new ResponseResult();
+    public ResponseResult<String> saveAdmin(@RequestBody TbAdminVo tbAdminVo,HttpServletRequest request){
+        tbAdminVo.setModifiedBy("admin");
+        Object object =adminService.saveAdmin(tbAdminVo);
+        if(object == null){
+            return  new ResponseResult<>(1005,"该账号已存在");
+        }
+        return new ResponseResult<>(200,"注册成功");
     }
 
     @RequestMapping(value = "/find",method=RequestMethod.POST)

@@ -646,13 +646,15 @@
                     
                 },
                 delInfo:function () {
-                    this.$http.post(contentPath+"/api/info/del",this.updateInfo).then(
-                        function (response) {
-                            sweetAlert("删除成功，该学生机构和课程都已清楚", "该学生机构和课程都已清楚" , "info");
-                            location.reload();
-                        },function (response) {
-                                sweetAlert(response.data.message,"错误码"+response.data.code , "error");
-                            })
+                    if(confirm("确定要注销此学籍吗？")) {
+                        this.$http.post(contentPath + "/api/info/del", this.updateInfo).then(
+                                function (response) {
+                                    sweetAlert("删除成功，该学生机构和课程都已清楚", "该学生机构和课程都已清楚", "info");
+                                    location.reload();
+                                }, function (response) {
+                                    sweetAlert(response.data.message, "错误码" + response.data.code, "error");
+                                })
+                    }
                         },
                 saveAddInfo:function () {
                     this.$http.post(contentPath+"/api/info/save",this.addInfo).then(

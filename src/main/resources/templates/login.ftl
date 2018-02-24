@@ -41,7 +41,7 @@
                         <div class="panel-footer clearfix">
                             <div>
                                 <div class="pull-left">
-                                    <button data-toggle="modal" data-target="#myModal"  class="button btn-primary">注册</button>
+                                    <button data-toggle="modal" data-target="#myModald"  class="button btn-primary">点一下</button>
                                 </div>
                                 <div class="pull-right">
                                     <button class="button btn-primary block" @click="login(admin)">登录</button>
@@ -130,7 +130,7 @@
         methods:{
             login:function (admin) {
                 if (this.admin.userName === "" || this.admin.passWord === "") {
-                    sweetAlert("登陆失败", "请输入账号和密码", "info");
+                    sweetAlert("账号密码不能为空", "请输入账号和密码", "info");
                 } else {
                     this.$http.post(contentPath + "/api/admin/find",admin).then(
                             function (response) {
