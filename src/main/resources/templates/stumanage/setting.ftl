@@ -63,7 +63,7 @@
                                         </td>
                                     </tr>
 
-                                    <tr v-show="admins.length==0">
+                                    <tr v-if="admins.length==0">
                                         <td class="text-center" colspan="20">没有数据 ！</td>
                                     </tr>
                                     </tbody>
@@ -95,7 +95,6 @@
         var app = new Vue({
             el:"#main",
             data:{
-
                 admins:[],
                 record:{
                     page:1,
@@ -137,7 +136,7 @@
                 delAdmin:function (admin) {
                     this.$http.get(contentPath+"/api/admin/del",{
                         params:{
-                            id:admin.id;
+                            id:admin.id
                         }
                     }).then(
                         function (response) {

@@ -33,7 +33,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
         //对来自/* 这个链接来的请求进行拦截
         registry.addInterceptor(new IdentityInterceptor()).addPathPatterns("/*");
-        registry.addInterceptor(new IdentityInterceptor()).excludePathPatterns("/admin/login");
+        registry.addInterceptor(new IdentityInterceptor()).excludePathPatterns("/admin/login")
+		.excludePathPatterns("/api/admin/find");
     }
 
 }

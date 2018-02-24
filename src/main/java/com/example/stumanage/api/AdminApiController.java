@@ -15,7 +15,7 @@ import java.util.List;
  * @date: 2018/2/1
  **/
 
-@RequestMapping("api/admin")
+@RequestMapping("/api/admin")
 @RestController
 public class AdminApiController {
 
