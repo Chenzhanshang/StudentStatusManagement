@@ -1,12 +1,14 @@
 package com.example.stumanage.api;
 
 import com.example.stumanage.common.ResponseResult;
+import com.example.stumanage.vo.TbAdminVo;
 import com.github.pagehelper.PageInfo;
 import com.example.stumanage.service.StudentCourseService;
 import com.example.stumanage.service.StudentSchoolService;
 import com.example.stumanage.vo.TbStudentCourseVo;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -58,13 +60,14 @@ public class StudentCourseApiController {
      * @return
      */
     @GetMapping("/save")
-    public ResponseResult save(@RequestParam String courseName ,@RequestParam String teacher,@RequestParam  String stuId){
+    public ResponseResult save(@RequestParam String courseName ,@RequestParam String teacher,@RequestParam  String stuId,HttpServletRequest request){
         TbStudentCourseVo tbStudentCourseVo = new TbStudentCourseVo();
         tbStudentCourseVo.setStuId(stuId);
         tbStudentCourseVo.setCourseName(courseName);
         tbStudentCourseVo.setTeacher(teacher);
-        tbStudentCourseVo.setModifiedBy("daitu");
-        tbStudentCourseVo.setCreatedBy("daitu");
+        TbAdminVo tbAdminVo= (TbAdminVo)request.getSession().getAttribute("tbAdmin");
+        tbStudentCourseVo.setModifiedBy(tbAdminVo.getNickName());
+        tbStudentCourseVo.setCreatedBy(tbAdminVo.getNickName());
         studentCourseService.saveCourse(tbStudentCourseVo);
 
         return new ResponseResult();
@@ -75,9 +78,10 @@ public class StudentCourseApiController {
      * @return
      */
     @PostMapping("/edit")
-    public ResponseResult edit(@RequestBody TbStudentCourseVo tbStudentCourseVo){
-        tbStudentCourseVo.setCreatedBy("daitu");
-        tbStudentCourseVo.setModifiedBy("daitu");
+    public ResponseResult edit(@RequestBody TbStudentCourseVo tbStudentCourseVo, HttpServletRequest request){
+        TbAdminVo tbAdminVo= (TbAdminVo)request.getSession().getAttribute("tbAdmin");
+        tbStudentCourseVo.setCreatedBy(tbAdminVo.getNickName());
+        tbStudentCourseVo.setModifiedBy(tbAdminVo.getNickName());
         studentCourseService.editCourse(tbStudentCourseVo);
 
         return new ResponseResult();

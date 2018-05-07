@@ -1,8 +1,8 @@
 spring:
    datasource:
-     url: jdbc:mysql://192.168.0.150:3306/theflash?useSSL=false
-     username: dbadmin
-     password: 2017admin*QMX
+     url: jdbc:mysql://127.0.0.1:3306/stumanage?useUnicode=true&characterEncoding=UTF-8useUnicode=true&characterEncoding=UTF-8
+     username: root
+     password: root
      driver-class-name: com.mysql.jdbc.Driver
 server:
   context-path: /stumanage

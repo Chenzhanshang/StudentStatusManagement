@@ -39,12 +39,6 @@ public class TbStudentSchoolPo {
      */
     private  String academy;
 
-
-    /**
-     * 系
-     */
-    private  String department;
-
     /**
      * 班
      */

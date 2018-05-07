@@ -2,17 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.stumanage.mapper.AdminMapper">
-    <insert id="saveAdmin">
+    <insert id="saveAdmin" parameterType="com.example.stumanage.domain.TbAdminPo">
       INSERT INTO tb_admin(nick_name,user_name,pass_word,phone)
       VALUES(#{nickName},#{userName},#{passWord},#{phone})
     </insert>
-    <update id="updateAdmin">
+    <update id="updateAdmin" parameterType="com.example.stumanage.domain.TbAdminPo">
         UPDATE tb_admin
         SET pass_word=#{passWord},
         phone=#{phone}
         WHERE user_name=#{userName}
     </update>
-    <delete id="delAdmin">
+    <delete id="delAdmin" parameterType="integer">
         DELETE FROM tb_admin
         WHERE id=#{id}
     </delete>

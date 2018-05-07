@@ -1,12 +1,14 @@
 package com.example.stumanage.api;
 
 import com.example.stumanage.service.StudentSchoolService;
+import com.example.stumanage.vo.TbAdminVo;
 import com.github.pagehelper.PageInfo;
 import com.example.stumanage.common.ResponseResult;
 import com.example.stumanage.vo.TbStudentSchoolVo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -28,9 +30,10 @@ public class StudentSchoolApiController {
      * @return
      */
     @PostMapping("/save")
-    public ResponseResult save(@RequestBody TbStudentSchoolVo tbStudentSchoolVo){
-        tbStudentSchoolVo.setCreatedBy("daitu");
-        tbStudentSchoolVo.setModifiedBy("daitu");
+    public ResponseResult save(@RequestBody TbStudentSchoolVo tbStudentSchoolVo, HttpServletRequest request){
+        TbAdminVo tbAdminVo= (TbAdminVo)request.getSession().getAttribute("tbAdmin");
+        tbStudentSchoolVo.setCreatedBy(tbAdminVo.getNickName());
+        tbStudentSchoolVo.setModifiedBy(tbAdminVo.getNickName());
         studentSchoolService.save(tbStudentSchoolVo);
 
         return new ResponseResult();

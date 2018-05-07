@@ -41,7 +41,7 @@
                         <div class="panel-footer clearfix">
                             <div>
                                 <div class="pull-left">
-                                    <button data-toggle="modal" data-target="#myModald"  class="button btn-primary">点一下</button>
+                                    <button data-toggle="modal" data-target="#myModald"  class="button btn-primary"></button>
                                 </div>
                                 <div class="pull-right">
                                     <button class="button btn-primary block" @click="login(admin)">登录</button>

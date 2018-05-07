@@ -18,9 +18,9 @@ public class IdentityInterceptor extends HandlerInterceptorAdapter {
 			// 继续往后
 			return true;
 		}
-			request.getRequestDispatcher("/admin/login").forward(request, response);
-			// 不往后走
-			return false;
+		request.getRequestDispatcher("/admin/login").forward(request, response);
+		// 不往后走
+		return false;
 
 	}
 }

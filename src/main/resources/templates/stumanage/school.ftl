@@ -81,7 +81,7 @@
                                     </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
+                              <#--  <div class="col-md-4">
                                     <div class="section">
                                         <label class="field-label">选择系
                                         </label>
@@ -92,7 +92,7 @@
                                             <i class="arrow double"></i>
                                         </label>
                                     </div>
-                                </div>
+                                </div>-->
                                 <div class="col-md-4">
                                     <div class="section">
                                         <label class="field-label">选择班级
@@ -140,11 +140,11 @@
         created:function () {
             this.queryAcademy();
         },
-        watch:{
+        /*watch:{
             'addStudent.academy':function () {
                 this.queryDepartment();
             }
-        },
+        },*/
         methods:{
             submit:function () {
                 this.$http.post(contentPath+"/api/school/save",this.addStudent).then(

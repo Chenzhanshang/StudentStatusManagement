@@ -56,7 +56,6 @@
                                         <td align="center">姓名</td>
                                         <td align="center">学号</td>
                                         <td align="center">学院</td>
-                                        <td align="center">系</td>
                                         <td align="center">班</td>
                                         <td align="center">操作</td>
                                     </tr>
@@ -66,20 +65,22 @@
                                         <td align="center">{{school.stuName}}</td>
                                         <td align="center">{{school.stuId}}</td>
                                         <td align="center">{{school.academy}}</td>
-                                        <td align="center">{{school.department}}</td>
                                         <td align="center">{{school.clazz}}</td>
                                         <td align="center">
-                                            <button data-toggle="modal" data-target="#myModalEdit" @click="chuan(school.stuId)">编辑</button>
+                                            <button data-toggle="modal" data-target="#myModalEdit"
+                                                    @click="chuan(school.stuId)">编辑
+                                            </button>
                                         </td>
                                     </tr>
                                     <tr v-bind="searchSchoolResult" v-if="searchSchoolResult!==''">
-                                        <td align="center">{{searchSchoolResult.id}}</td>
                                         <td align="center">{{searchSchoolResult.stuName}}</td>
-                                        <td align="center">{{searchSchoolResult.cardId}}</td>
-                                        <td align="center">{{searchSchoolResult.schoolTime}}</td>
-                                        <td align="center">{{searchSchoolResult.createdBy}}</td>
+                                        <td align="center">{{searchSchoolResult.stuId}}</td>
+                                        <td align="center">{{searchSchoolResult.academy}}</td>
+                                        <td align="center">{{searchSchoolResult.clazz}}</td>
                                         <td align="center">
-                                            <button data-toggle="modal" data-target="#myModalEdit" @click="chuan(searchSchoolResult)">编辑</button>
+                                            <button data-toggle="modal" data-target="#myModalEdit"
+                                                    @click="chuan(searchSchoolResult.stuId)">编辑
+                                            </button>
                                         </td>
                                     </tr>
                                     <tr v-show="schools.length==0&&searchSchoolResult.length==0">
@@ -120,7 +121,7 @@
                                     <label class="field-label">姓名
                                     </label>
                                     <label class="field prepend-icon">
-                                        <div>ddd</div>
+                                        <div>{{updateSchool.stuName}}</div>
                                     </label>
                                     </label>
                                 </div>
@@ -131,7 +132,7 @@
                                 <label class="field-label">学号
                                 </label>
                                 <label class="field prepend-icon">
-                                    <div>dasd   </div>
+                                    <div>{{updateSchool.stuId}}</div>
                                 </label>
                             </div>
                         </div>
@@ -144,25 +145,27 @@
                                     <label class="field select">
                                         <select v-model="updateSchool.academy">
                                             <option :value="updateSchool.academy">{{updateSchool.academy}}</option>
-                                            <option v-for="academy in academys" v-bind:value="academy" v-if="academy !== updateSchool.academy">{{academy}}</option>
+                                            <option v-for="academy in academys" v-bind:value="academy"
+                                                    v-if="academy !== updateSchool.academy">{{academy}}
+                                            </option>
                                         </select>
                                         <i class="arrow double"></i>
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="section">
-                                    <label class="field-label">系
-                                    </label>
-                                    <label class="field select">
-                                        <select v-model="updateSchool.department">
-                                            <option :value="updateSchool.department">{{updateSchool.department}}</option>
-                                            <option v-for="department in departments" v-bind:value="department" v-if="department !== updateSchool.department">{{department}}</option>
-                                        </select>
-                                        <i class="arrow double"></i>
-                                    </label>
-                                </div>
-                            </div>
+                        <#--   <div class="col-md-4">
+                               <div class="section">
+                                   <label class="field-label">系
+                                   </label>
+                                   <label class="field select">
+                                       <select v-model="updateSchool.department">
+                                           <option :value="updateSchool.department">{{updateSchool.department}}</option>
+                                           <option v-for="department in departments" v-bind:value="department" v-if="department !== updateSchool.department">{{department}}</option>
+                                       </select>
+                                       <i class="arrow double"></i>
+                                   </label>
+                               </div>
+                           </div>-->
                         </div>
                         <div class="row">
                             <div class="col-md-4">
@@ -184,7 +187,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" @click="updateInfoSave()">保存修改</button>
-                        <button type="button" class="btn btn-primary"  data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
                     </div>
                 </div>
             </div>
@@ -198,95 +201,86 @@
 <script src="<@s.url '/assets/plugins/ueditor/ueditor.all.min.js'/>"></script>
 <script>
     var app = new Vue({
-        el:"#main",
-        data:{
-            schools:[],
-            updateSchool:{
-                stuId:"",
-                stuName:"",
-                academy:"",
-                department:"",
-                clazz:""
+        el: "#main",
+        data: {
+            schools: [],
+            updateSchool: {
+                stuId: "",
+                stuName: "",
+                academy: "",
+                clazz: ""
             },
-            academys:[],
-            departments:[],
-            queryStuId:"",
-            searchSchoolResult:"",
-            record:{
-                page:1,
-                pageSize:10
+            academys: [],
+            queryStuId: "",
+            searchSchoolResult: "",
+            record: {
+                page: 1,
+                pageSize: 10
             }
         },
-        created:function () {
+        created: function () {
             this.queryAll();
         },
         watch: {
-            'updateSchool.academy':function (newVal) {
-                console.log(newVal);
-                if(newVal){
-                    this.queryDepartment();
-                }
-            },
             'record.page': function () {
                 this.queryAll();
             }
         },
-        methods:{
-            chuan:function (item) {
-                this.$http.get(contentPath+"/api/school/findByStuId",{
-                    params:{
-                        stuId:item
+        methods: {
+            chuan: function (item) {
+                this.$http.get(contentPath + "/api/school/findByStuId", {
+                    params: {
+                        stuId: item
                     }
                 }).then(
                         function (response) {
-                            this.updateSchool=response.data.data;
-                        },function (response) {
-                            sweetAlert(response.data.message,"错误码"+response.data.code , "error");
+                            this.updateSchool = response.data.data;
+                        }, function (response) {
+                            sweetAlert(response.data.message, "错误码" + response.data.code, "error");
                         }
                 );
                 this.queryAcademy();
             },
             updateSchoolSave: function () {
-                this.$http.post(contentPath+"/api/school/update",this.updateSchool).then(
+                this.$http.post(contentPath + "/api/school/update", this.updateSchool).then(
                         function (response) {
-                            sweetAlert("修改成功", "修改成功" , "info");
-                        },function (response) {
-                            sweetAlert(response.data.message,"错误码"+response.data.code , "error");
+                            sweetAlert("修改成功", "修改成功", "info");
+                        }, function (response) {
+                            sweetAlert(response.data.message, "错误码" + response.data.code, "error");
                         })
             },
-            queryAcademy:function () {
-                this.$http.get(contentPath+"/api/school/queryAcademy").then(
+            queryAcademy: function () {
+                this.$http.get(contentPath + "/api/school/queryAcademy").then(
                         function (response) {
-                            this.academys=response.data.data;
-                        },function (response) {
-                            sweetAlert(response.data.message,"错误码"+response.data.code , "error");
+                            this.academys = response.data.data;
+                        }, function (response) {
+                            sweetAlert(response.data.message, "错误码" + response.data.code, "error");
                         }
                 )
             },
-            findByStuId :function () {
-                if(this.queryStuId===""){
-                    sweetAlert("请输入学号", "请输入学号" , "info");
+            findByStuId: function () {
+                if (this.queryStuId === "") {
+                    sweetAlert("请输入学号", "请输入学号", "info");
                 }
-                else{
-                    this.$http.get(contentPath+"/api/school/findByStuId", {
+                else {
+                    this.$http.get(contentPath + "/api/school/findByStuId", {
                         params: {
-                            stuId:this.queryStuId
+                            stuId: this.queryStuId
                         }
-                    })
-                            .then(
-                                    function (response) {
-                                        $("#callBackPager").page("destroy");
-                                        this.schools=[];
-                                        this.searchSchoolResult=response.data.data;
-                                    },function (response) {
-                                        sweetAlert("出错了！","没有查该学生的学院信息,请重新输入 ", "error");
-                                    })
+                    }).then(
+                            function (response) {
+                                $("#callBackPager").page("destroy");
+                                this.schools = [];
+                                this.searchSchoolResult = response.data.data;
+                            }, function (response) {
+                                sweetAlert("出错了！", "没有查该学生的学院信息,请重新输入 ", "error");
+                            })
                 }
             },
-            queryAll:function () {
-                this.$http.post(contentPath+"/api/school/findAll",this.record).then(
+            queryAll: function () {
+                this.$http.post(contentPath + "/api/school/findAll", this.record).then(
                         function (response) {
-                            this.schools=response.data.data.list;
+                            this.schools = response.data.data.list;
                             var temp = this;
                             $("#callBackPager").page({
                                 total: response.data.data.total,
@@ -305,20 +299,20 @@
                                     }).on('jumpClicked', function (event, pageIndex) {
                                 temp.record.page = pageIndex + 1;
                             });
-                        },function (response) {
+                        }, function (response) {
                             sweetAlert(response.data.message, "错误码" + response.data.code, "error");
                         })
             },
-            queryDepartment:function () {
-                this.$http.get(contentPath+"/api/school/queryDepartment",{
-                    params:{
-                        academyName:this.updateSchool.academy
+            queryDepartment: function () {
+                this.$http.get(contentPath + "/api/school/queryDepartment", {
+                    params: {
+                        academyName: this.updateSchool.academy
                     }
                 }).then(
                         function (response) {
-                            this.departments=response.data.data;
-                        },function (response) {
-                            sweetAlert(response.data.message,"错误码"+response.data.code , "error");
+                            this.departments = response.data.data;
+                        }, function (response) {
+                            sweetAlert(response.data.message, "错误码" + response.data.code, "error");
                         }
                 )
             }

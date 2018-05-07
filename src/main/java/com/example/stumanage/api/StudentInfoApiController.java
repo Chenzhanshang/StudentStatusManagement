@@ -1,9 +1,11 @@
 package com.example.stumanage.api;
 
 import com.example.stumanage.common.ResponseResult;
+import com.example.stumanage.vo.TbAdminVo;
 import com.github.pagehelper.PageInfo;
 import com.example.stumanage.service.StudentInfoService;
 import com.example.stumanage.vo.TbStudentInfoVo;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -46,9 +48,12 @@ public class StudentInfoApiController {
     }
 
     @PostMapping("/save")
-    public ResponseResult saveInfo(@RequestBody TbStudentInfoVo tbStudentInfoVo) {
-        tbStudentInfoVo.setCreatedBy("带土");
-        tbStudentInfoVo.setModifiedBy("带土");
+    public ResponseResult saveInfo(@RequestBody TbStudentInfoVo tbStudentInfoVo, HttpServletRequest request) {
+
+        TbAdminVo tbAdminVo= (TbAdminVo)request.getSession().getAttribute("tbAdmin");
+
+        tbStudentInfoVo.setCreatedBy(tbAdminVo.getNickName());
+        tbStudentInfoVo.setModifiedBy(tbAdminVo.getNickName());
         studentInfoService.saveInfo(tbStudentInfoVo);
 
         return new ResponseResult();

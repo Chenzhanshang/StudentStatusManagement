@@ -39,7 +39,6 @@ public class StudentSchoolServiceImpl implements StudentSchoolService {
         AssertUtils.hasText(tbStudentSchoolVo.getStuName(), "姓名不能为空");
         AssertUtils.hasText(tbStudentSchoolVo.getCardId(), "身份证号不能为空");
         AssertUtils.hasText(tbStudentSchoolVo.getAcademy(), "学院不能为空");
-        AssertUtils.hasText(tbStudentSchoolVo.getDepartment(), "系不能为空");
         AssertUtils.hasText(tbStudentSchoolVo.getClazz(), "班不能为空");
     }
 

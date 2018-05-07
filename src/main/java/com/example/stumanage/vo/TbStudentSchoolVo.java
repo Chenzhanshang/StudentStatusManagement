@@ -40,12 +40,6 @@ public class TbStudentSchoolVo extends PageVo {
      */
     private  String academy;
 
-
-    /**
-     * 系
-     */
-    private  String department;
-
     /**
      * 班
      */
@@ -119,14 +113,6 @@ public class TbStudentSchoolVo extends PageVo {
 
     public void setAcademy(String academy) {
         this.academy = academy;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
     }
 
     public String getClazz() {
