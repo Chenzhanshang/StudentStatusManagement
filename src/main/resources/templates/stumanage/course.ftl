@@ -42,10 +42,6 @@
                                                                 <label class="button">学号</label>
                                                                 <input type="text" class="gui-input" v-model="searchStuId"/>
                                                             </div>
-                                                            <div class="smart-widget sm-left sml-120">
-                                                                <label class="button">姓名</label>
-                                                                <input type="text" class="gui-input"/>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 <div class="panel-footer">
@@ -269,6 +265,7 @@
                                 }
                             }).then(function (response) {
                                 sweetAlert("添加成功", "添加课程成功" , "info");
+                                window.location.reload();
                             },function (response) {
                                 sweetAlert(response.data.message, "错误码" + response.data.code, "error");
                             }
@@ -277,6 +274,7 @@
                             this.$http.post(contentPath+"/api/course/edit", this.editCourse)
                                     .then(function (response) {
                                 sweetAlert("修改成功", "修改课程信息成功" , "info");
+                                window.location.reload();
                             },function (response) {
                                 sweetAlert(response.data.message, "错误码" + response.data.code, "error");
                             }
@@ -287,7 +285,7 @@
                             this.$http.get(contentPath + "/api/course/del/" + course.id)
                                     .then(function (response) {
                                                 sweetAlert("删除成功", "删除课程信息成功", "info");
-                                                location.reload();
+                                                window.location.reload();
                                             }, function (response) {
                                                 sweetAlert(response.data.message, "错误码" + response.data.code, "error");
                                             }

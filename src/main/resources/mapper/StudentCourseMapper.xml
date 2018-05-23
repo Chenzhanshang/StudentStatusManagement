@@ -32,7 +32,7 @@
         teacher=#{teacher},
         `analyze`=#{analyze},
         modified_by=#{modifiedBy},
-        created_by=#{createdBy} WHERE  stu_id=#{stuId}
+        created_by=#{createdBy} WHERE  id=#{id}
     </update>
 
 

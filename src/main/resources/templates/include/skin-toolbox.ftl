@@ -1,18 +1,4 @@
-<!-------------------------------------------------------------+
-  <body> Helper Classes:
----------------------------------------------------------------+
-  '.sb-l-o' - Sets Left Sidebar to "open"
-  '.sb-l-m' - Sets Left Sidebar to "minified"
-  '.sb-l-c' - Sets Left Sidebar to "closed"
 
-  '.sb-r-o' - Sets Right Sidebar to "open"
-  '.sb-r-c' - Sets Right Sidebar to "closed"
----------------------------------------------------------------+
- Example: <body class="example-page sb-l-o sb-r-c">
- Results: Sidebar left Open, Sidebar right Closed
---------------------------------------------------------------->
-
-<!-- Start: Theme Preview Pane -->
 <div id="skin-toolbox">
     <div class="panel">
         <div class="panel-heading">

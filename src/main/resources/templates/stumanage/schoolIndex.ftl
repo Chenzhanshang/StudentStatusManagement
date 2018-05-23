@@ -186,7 +186,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" @click="updateInfoSave()">保存修改</button>
+                        <button type="button" class="btn btn-primary" @click="updateSchoolSave()">保存修改</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
                     </div>
                 </div>
@@ -245,6 +245,7 @@
                 this.$http.post(contentPath + "/api/school/update", this.updateSchool).then(
                         function (response) {
                             sweetAlert("修改成功", "修改成功", "info");
+                            window.location.reload();
                         }, function (response) {
                             sweetAlert(response.data.message, "错误码" + response.data.code, "error");
                         })

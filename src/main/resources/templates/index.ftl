@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="zh_CN">
 <head>
-    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <title>DashBoard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,13 +10,10 @@
 
 <body class="dashboard-page">
 <#include 'include/skin-toolbox.ftl'>
-<!-- Start: Main -->
 <div id="main">
 <#include 'include/header.ftl'>
 <#include 'include/sidebar.ftl'>
-    <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
-        <!-- Start: Topbar -->
         <header id="topbar" class="alt">
             <div class="topbar-left">
                 <ol class="breadcrumb">
@@ -36,15 +32,10 @@
                 </ol>
             </div>
         </header>
-        <!-- End: Topbar -->
-
-        <!-- Begin: Content -->
         <section id="content" class="table-layout animated fadeIn">
         </section>
-        <!-- End: Content -->
         <#include 'include/footer.ftl' />
     </section>
-    <!-- End: Content-Wrapper -->
 </div>
 <#include 'include/footer_js.ftl'/>
 </body>

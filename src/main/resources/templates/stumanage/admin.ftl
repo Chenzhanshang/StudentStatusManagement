@@ -151,6 +151,7 @@
             }
             methods: {
                 editPassSave: function () {
+                    debugger;
                     if (this.admin.passWord === this.tbAdmin.passWord) {
                         if (this.admin.passWordNew === this.admin.passWordNewTwo && this.admin.passWordNew !== "") {
                                 this.tbAdmin.passWord = this.admin.passWordNew;

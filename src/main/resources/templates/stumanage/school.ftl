@@ -150,6 +150,7 @@
                 this.$http.post(contentPath+"/api/school/save",this.addStudent).then(
                     function (response) {
                         sweetAlert("保存成功，该学生的信息已经插入", "该学生的信息已经插入" , "info");
+                        window.location.reload();
                     },function (response) {
                             sweetAlert(response.data.message,"错误码"+response.data.code , "error");
                         }

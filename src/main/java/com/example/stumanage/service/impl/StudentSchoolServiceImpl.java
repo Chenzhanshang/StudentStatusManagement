@@ -159,19 +159,6 @@ public class StudentSchoolServiceImpl implements StudentSchoolService {
         TbStudentSchoolPo tbStudentSchoolPo = studentSchoolMapper.findByStuId(stuId);
         TbStudentSchoolVo tbStudentSchoolVo = new TbStudentSchoolVo();
         BeanUtils.copyProperties(tbStudentSchoolPo,tbStudentSchoolVo);
-       /* List<TbStudentCoursePo> tbStudentCoursePos =studentCourseMapper.findByStuIdd(stuId);
-        if (tbStudentCoursePos.isEmpty()){
-            return null;
-        }
-        List<TbStudentCourseVo>  tbStudentCourseVos = new ArrayList<>(tbStudentCoursePos.size());
-
-        for(TbStudentCoursePo tbStudentCoursePo :tbStudentCoursePos)
-        {
-            TbStudentCourseVo tbStudentCourseVo = new TbStudentCourseVo();
-            BeanUtils.copyProperties(tbStudentCoursePo,tbStudentCourseVo);
-            tbStudentCourseVos.add(tbStudentCourseVo);
-        }
-        tbStudentSchoolVo.setList(tbStudentCourseVos);*/
 
         return tbStudentSchoolVo;
     }

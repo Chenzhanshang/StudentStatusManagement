@@ -20,7 +20,7 @@
                 <span class="sidebar-title">其他设置</span><span class="caret"></span></li>
             </a></div>
             <div class="section-divider mv30" align="center"><a class="accordion-toggle" href="http://localhost:8080/stumanage/admin/list"><li><span class="glyphicon glyphicon-tower"></span>
-                <span class="sidebar-title">用户设置</span><span class="caret"></span></li>
+                <span class="sidebar-title">个人设置</span><span class="caret"></span></li>
             </a></div>
             <div class="section-divider mv30" align="center"><a class="accordion-toggle" href="http://localhost:8080/stumanage/admin/setting"><li><span class="glyphicon glyphicon-tower"></span>
                 <span class="sidebar-title">管理员设置</span><span class="caret"></span></li>
