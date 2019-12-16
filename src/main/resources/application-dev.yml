@@ -6,6 +6,6 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
 
 server:
-  context-path: /stumanage
+  context-path: /
   port: 8080
 

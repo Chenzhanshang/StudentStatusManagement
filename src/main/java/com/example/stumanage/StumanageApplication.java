@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.mybatis.spring.annotation.MapperScan;
 
-@EnableAutoConfiguration
 @MapperScan("com.example.stumanage.mapper")
 @SpringBootApplication
 public class StumanageApplication {
