@@ -1,2 +1,12 @@
 # Created by .ignore support plugin (hsz.mobi)
-/.idea/
+.idea
+*.iml
+out
+gen
+*/target
+target/
+.settings
+.classpath
+.project
+.DS_Store
+.vscode
