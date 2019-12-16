@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.stumanage.mapper.StudentInfoMapper">
+
+    <insert id="saveInfo" parameterType="com.example.stumanage.domain.TbStudentInfoPo">
+        INSERT INTO tb_student_info
+        (stu_name,sex,card_id,nation,native_place,birth_place,politics_status,
+        wedding_status,school_status,school_time,created_by,modified_by)
+        VALUES (#{stuName},#{sex},#{cardId},#{nation},#{nativePlace},#{birthPlace},#{politicsStatus},
+        #{weddingStatus},#{schoolStatus},#{schoolTime},#{createdBy},#{modifiedBy})
+    </insert>
+    <update id="updateInfo" parameterType="com.example.stumanage.domain.TbStudentInfoPo">
+        UPDATE  tb_student_info
+        SET stu_name=#{stuName},sex=#{sex},nation=#{nation},
+        native_place=#{nativePlace},birth_place=#{birthPlace},politics_status=#{politicsStatus},
+        wedding_status=#{weddingStatus},school_status=#{schoolStatus},school_time=#{schoolTime},
+        created_by=#{createdBy},modified_by=#{modifiedBy}
+        WHERE card_id=#{cardId}
+    </update>
+    <delete id="delInfo" parameterType="integer">
+        DELETE FROM tb_student_info
+        WHERE id=#{id}
+    </delete>
+    <select id="findByAll" resultType="com.example.stumanage.vo.TbStudentInfoVo">
+        SELECT * FROM tb_student_info
+    </select>
+    <select id="findByCardId" resultType="com.example.stumanage.domain.TbStudentInfoPo">
+        SELECT * FROM tb_student_info WHERE card_id=#{cardId}
+    </select>
+</mapper>

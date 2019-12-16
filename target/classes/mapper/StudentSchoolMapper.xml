@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.stumanage.mapper.StudentSchoolMapper">
+
+    <insert id="save" parameterType="com.example.stumanage.domain.TbStudentSchoolPo">
+        INSERT INTO tb_student_school
+        (stu_id,stu_name,card_id,academy,clazz,experience,created_by,modified_by)
+        VALUES (#{stuId},#{stuName},#{cardId},#{academy},#{clazz},
+        #{experience},#{createdBy},#{modifiedBy})
+    </insert>
+    <update id="update" parameterType="com.example.stumanage.domain.TbStudentSchoolPo">
+        UPDATE tb_student_school
+        SET stu_name=#{stuName},card_id=#{cardId},academy=#{academy},
+        clazz=#{clazz},experience=#{experience},created_by=#{createdBy},modified_by=#{modifiedBy}
+        WHERE id=#{id}
+    </update>
+    <delete id="deleteById" parameterType="integer">
+        DELETE FROM tb_student_school
+        WHERE id=#{id}
+    </delete>
+    <delete id="deleteByCard" parameterType="string">
+        DELETE FROM tb_student_school
+        WHERE card_id=#{cardId}
+    </delete>
+    <select id="findAll" resultType="com.example.stumanage.vo.TbStudentSchoolVo">
+        SELECT * FROM  tb_student_school
+    </select>
+    <select id="findByStuId" resultType="com.example.stumanage.domain.TbStudentSchoolPo">
+        SELECT * FROM tb_student_school WHERE stu_id=#{stuId}
+    </select>
+    <select id="findByCardId" resultType="com.example.stumanage.domain.TbStudentSchoolPo">
+        SELECT * FROM tb_student_school WHERE card_id=#{cardId}
+    </select>
+    <select id="findAcademy" resultType="java.lang.String">
+        SELECT DISTINCT academy FROM tb_academy
+    </select>
+    <select id="findDepartment" resultType="java.lang.String">
+        SELECT DISTINCT department FROM tb_academy WHERE academy=#{academyName}
+    </select>
+    <update id="other">
+        UPDATE tb_student_school
+        SET experience=#{experience} WHERE stu_id=#{stuId}
+    </update>
+
+</mapper>
