@@ -3,8 +3,9 @@
 *.iml
 out
 gen
-*/target
 target/
+.logs/
+.apt_generated/
 .settings
 .classpath
 .project
