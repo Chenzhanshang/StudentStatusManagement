@@ -190,7 +190,7 @@
             },
             methods:{
                 queryAll:function () {
-                    this.$http.post(contentPath+"/api/admin/findAll",this.record).then(
+                    this.$http.post("/api/admin/findAll",this.record).then(
                     function (response) {
                         this.admins=response.data.data.list;
                         var temp = this;
@@ -217,7 +217,7 @@
                 },
                 delAdmin:function (admin) {
                     if(confirm("确定删除吗？")){
-                        this.$http.get(contentPath+"/api/admin/del",{
+                        this.$http.get("/api/admin/del",{
                             params:{
                                 id:admin.id
                             }
@@ -232,7 +232,7 @@
                         },
                 registerM:function () {
                             if (this.register.passWord === this.register.passWordTwo ) {
-                                this.$http.post(contentPath+"/api/admin/register",this.register).then(
+                                this.$http.post("/api/admin/register",this.register).then(
                                         function (response) {
                                             if (response.data.code === 1005) {
                                                 sweetAlert("错误码"+response.data.code, response.data.message, "error");

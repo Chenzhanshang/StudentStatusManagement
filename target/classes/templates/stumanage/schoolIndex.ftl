@@ -1,6 +1,6 @@
 <#import "/spring.ftl" as s>
 <!DOCTYPE html>
-<html lang="zh_CN">
+<html lang="zh_CN" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <title>学生机构设置</title>
@@ -170,13 +170,16 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="section">
-                                    <label class="field-label">班
+                                    <label class="field-label">班级
                                     </label>
                                     <label class="field select">
                                         <select v-model="updateSchool.clazz">
-                                            <option value="一班">一班</option>
-                                            <option value="二班">二班</option>
-                                            <option value="三班">三班</option>
+                                            <option value="计科一班">计科一班</option>
+                                            <option value="计科二班">计科二班</option>
+                                            <option value="通信一班">通信一班</option>
+                                            <option value="通信二班">通信二班</option>
+                                            <option value="通信三班">通信三班</option>
+                                            <option value="物联一班">物联一班</option>
                                         </select>
                                         <i class="arrow double"></i>
                                     </label>
@@ -228,7 +231,7 @@
         },
         methods: {
             chuan: function (item) {
-                this.$http.get(contentPath + "/api/school/findByStuId", {
+                this.$http.get("/api/school/findByStuId", {
                     params: {
                         stuId: item
                     }
@@ -242,7 +245,7 @@
                 this.queryAcademy();
             },
             updateSchoolSave: function () {
-                this.$http.post(contentPath + "/api/school/update", this.updateSchool).then(
+                this.$http.post("/api/school/update", this.updateSchool).then(
                         function (response) {
                             sweetAlert("修改成功", "修改成功", "info");
                             window.location.reload();
@@ -251,7 +254,7 @@
                         })
             },
             queryAcademy: function () {
-                this.$http.get(contentPath + "/api/school/queryAcademy").then(
+                this.$http.get( "/api/school/queryAcademy").then(
                         function (response) {
                             this.academys = response.data.data;
                         }, function (response) {
@@ -264,7 +267,7 @@
                     sweetAlert("请输入学号", "请输入学号", "info");
                 }
                 else {
-                    this.$http.get(contentPath + "/api/school/findByStuId", {
+                    this.$http.get("/api/school/findByStuId", {
                         params: {
                             stuId: this.queryStuId
                         }
@@ -279,7 +282,7 @@
                 }
             },
             queryAll: function () {
-                this.$http.post(contentPath + "/api/school/findAll", this.record).then(
+                this.$http.post("/api/school/findAll", this.record).then(
                         function (response) {
                             this.schools = response.data.data.list;
                             var temp = this;
@@ -305,7 +308,7 @@
                         })
             },
             queryDepartment: function () {
-                this.$http.get(contentPath + "/api/school/queryDepartment", {
+                this.$http.get("/api/school/queryDepartment", {
                     params: {
                         academyName: this.updateSchool.academy
                     }

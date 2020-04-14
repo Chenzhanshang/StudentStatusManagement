@@ -80,6 +80,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </section>
     <#include '../include/footer.ftl' />
     </section>
@@ -169,6 +170,7 @@
                                             </label>
                                     </div>
                                 </div>
+                                </div>
                             </div>
 
                             <div class="section">
@@ -212,7 +214,7 @@
                 this.editOther=item;
             },
             editOtherSave :function () {
-                this.$http.post(contentPath+"/api/school/update",this.editOther).then(
+                this.$http.post("/api/school/update",this.editOther).then(
                     function (response) {
                         sweetAlert("保存成功，该学生的信息已经插入", "该学生的信息已经插入" , "info");
                         location.reload();
@@ -226,7 +228,7 @@
                     sweetAlert("请输入学号", "请输入学号" , "info");
                 }
                 else{
-                this.$http.get(contentPath+"/api/school/findByStuId",{
+                this.$http.get("/api/school/findByStuId",{
                     params: {
                         stuId:this.queryStuId
                 }

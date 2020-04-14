@@ -9,7 +9,7 @@
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
             <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown" aria-expanded="false">
-                <span>${tbAdmin.nickName!}</span>
+                <!--<span>${tbAdmin.nickName!}</span>-->
                         <b></b>
                 <span class="caret caret-tp hidden-xs"></span>
             </a>

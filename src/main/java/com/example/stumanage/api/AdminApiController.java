@@ -35,6 +35,7 @@ public class AdminApiController {
     @RequestMapping(value = "/find",method=RequestMethod.POST)
     public  ResponseResult<String> findByUserName(@RequestBody TbAdminVo tbAdminVo, HttpServletRequest request){
         TbAdminVo result = adminService.findByUserName(tbAdminVo.getUserName());
+        System.out.println(tbAdminVo);
         if(result == null){
             return  new ResponseResult<>(1001,"没有该账号");
         }
@@ -54,6 +55,11 @@ public class AdminApiController {
         adminService.updateAdmin(tbAdminVo);
 
         return new ResponseResult();
+    }
+
+    @GetMapping("/getNowAdmin")
+    public ResponseResult getNowAdmin(HttpServletRequest request){
+        return new ResponseResult<>(request.getSession().getAttribute("tbAdmin"));
     }
 
     @GetMapping("/del")

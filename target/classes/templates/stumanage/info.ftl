@@ -606,14 +606,14 @@
             },
             methods:{
                 chuan:function (cardId) {
-                            window.location.href="http://localhost:8080/stumanage/info/findByCardId/"+cardId;
+                            window.location.href="http://localhost:8080/info/findByCardId/"+cardId;
                             },
                 search: function () {
                     $("#callBackPager").page("destroy");
                     this.queryAll();
                 },
                 queryAll:function () {
-                    this.$http.post(contentPath+"/api/info/findAll",this.record).then(
+                    this.$http.post("/api/info/findAll",this.record).then(
                     function (response) {
                         this.infos=response.data.data.list;
                         var temp = this;
@@ -647,7 +647,7 @@
                 },
                 delInfo:function () {
                     if(confirm("确定要注销此学籍吗？")) {
-                        this.$http.post(contentPath + "/api/info/del", this.updateInfo).then(
+                        this.$http.post("/api/info/del", this.updateInfo).then(
                                 function (response) {
                                     sweetAlert("删除成功，该学生机构和课程都已清楚", "该学生机构和课程都已清楚", "info");
                                     location.reload();
@@ -657,7 +657,7 @@
                     }
                         },
                 saveAddInfo:function () {
-                    this.$http.post(contentPath+"/api/info/save",this.addInfo).then(
+                    this.$http.post("/api/info/save",this.addInfo).then(
                             function (response) {
                                 sweetAlert("保存成功", "保存成功,请给该生指派学院等学校信息" , "info");
                                 this.chuan(this.addInfo.cardId);
@@ -670,7 +670,7 @@
                         sweetAlert("请输入学号", "请输入学号" , "info");
                     }
                     else{
-                        this.$http.get(contentPath+"/api/info/findByStuId", {
+                        this.$http.get("/api/info/findByStuId", {
                             params: {
                                 stuId:this.queryStuId
                                  }
@@ -686,7 +686,7 @@
                     }
                 },
                 updateInfoSave: function () {
-                    this.$http.post(contentPath+"/api/info/update",this.updateInfo).then(
+                    this.$http.post("/api/info/update",this.updateInfo).then(
                             function (response) {
                                 sweetAlert("修改成功", "修改成功" , "info");
                                 location.reload();

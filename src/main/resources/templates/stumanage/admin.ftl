@@ -122,7 +122,7 @@
         </div>
     </div>
 
-<#include '../include/footer_js.ftl'/>
+    <#include '../include/footer_js.ftl'/>
     <script src="<@s.url '/assets/js/jquery.pagination.min.js'/>"></script>
     <script src="<@s.url '/assets/plugins/ueditor/ueditor.config.js'/>"></script>
     <script src="<@s.url '/assets/plugins/ueditor/ueditor.all.min.js'/>"></script>
@@ -147,15 +147,19 @@
                 }
             },
             created:function () {
-                this.tbAdmin=${tbAdmin};
-            }
+                this.$http.get("/api/admin/getNowAdmin").then(
+                    function (response) {
+                        this.tbAdmin=response.body.data;
+                    }, function (response) {
+                        sweetAlert(response.data.message, "错误码" + response.data.code, "error");
+                    })
+            },
             methods: {
                 editPassSave: function () {
-                    debugger;
                     if (this.admin.passWord === this.tbAdmin.passWord) {
                         if (this.admin.passWordNew === this.admin.passWordNewTwo && this.admin.passWordNew !== "") {
                                 this.tbAdmin.passWord = this.admin.passWordNew;
-                            this.$http.post(contentPath + "/api/admin/update", this.tbAdmin).then(
+                            this.$http.post("/api/admin/update", this.tbAdmin).then(
                                     function (response) {
                                         sweetAlert("修改成功", "下次登陆请用新密码", "info");
                                     }, function (response) {
@@ -171,9 +175,9 @@
                 },
                 editPhoneSave: function () {
                     if (this.admin.phone === this.tbAdmin.phone) {
-                        if (this.admin.phoneNew===""){
+                        if (this.admin.phoneNew != ""){
                             this.tbAdmin.phone=this.admin.phone;
-                            this.$http.post(contentPath + "/api/admin/update", this.tbAdmin).then(
+                            this.$http.post("/api/admin/update", this.tbAdmin).then(
                                     function (response) {
                                         sweetAlert("修改成功", "修改成功", "info");
                                     }, function (response) {
@@ -189,6 +193,7 @@
             }
         })
     </script>
+</div>
 </body>
 
 </html>

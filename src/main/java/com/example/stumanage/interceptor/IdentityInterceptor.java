@@ -13,6 +13,8 @@ public class IdentityInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		//解决静态资源被拦截
+		response.setContentType("text/html;charset=utf-8");
         TbAdminVo tbAdminVo=(TbAdminVo)request.getSession().getAttribute("tbAdmin");
 		if (tbAdminVo!=null) {
 			// 继续往后

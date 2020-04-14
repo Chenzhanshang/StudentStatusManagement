@@ -46,6 +46,6 @@ public class AdminController {
     public String logout(HttpServletRequest request){
 
         request.getSession().removeAttribute("tbAdmin");
-        return "redirect: /login";
+        return "/login";
     }
 }

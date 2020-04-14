@@ -45,11 +45,12 @@
                                                         </div>
                                                     </div>
                                                 <div class="panel-footer">
-                                                    <button class="button btn-primary" @click="queryAll()">查找该生所有课程</button>
+                                                    <button  @click="queryAll()">查找该生所有课程</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                         </section>
                     <div class="panel-body pn">
@@ -99,6 +100,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
         <!-- End: Content -->
@@ -224,7 +226,7 @@
                             this.editCourse=item;
                         },
                         queryAll:function () {
-                            this.$http.get(contentPath+"/api/course/findAll",
+                            this.$http.get("/api/course/findAll",
                              {
                                    params: {
                                         stuId:this.searchStuId,
@@ -257,7 +259,7 @@
                             })
                         },
                         addCoursem:function () {
-                            this.$http.get(contentPath+"/api/course/save",{
+                            this.$http.get("/api/course/save",{
                                 params:{
                                     courseName:this.addCourse.courseName,
                                     teacher:this.addCourse.teacher,
@@ -271,7 +273,7 @@
                             }
                             )},
                         editCoursem:function () {
-                            this.$http.post(contentPath+"/api/course/edit", this.editCourse)
+                            this.$http.post("/api/course/edit", this.editCourse)
                                     .then(function (response) {
                                 sweetAlert("修改成功", "修改课程信息成功" , "info");
                                 window.location.reload();
@@ -282,7 +284,7 @@
                             )},
                         delCourse:function (course) {
                             if(confirm("确定要删除此课程吗？")){
-                            this.$http.get(contentPath + "/api/course/del/" + course.id)
+                            this.$http.get("/api/course/del/" + course.id)
                                     .then(function (response) {
                                                 sweetAlert("删除成功", "删除课程信息成功", "info");
                                                 window.location.reload();
@@ -301,6 +303,7 @@
 
                 })
     </script>
+</div>
 </body>
 
 </html>

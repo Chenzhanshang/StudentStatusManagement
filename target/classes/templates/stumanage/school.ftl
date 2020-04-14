@@ -1,6 +1,6 @@
 <#import "/spring.ftl" as s>
 <!DOCTYPE html>
-<html lang="zh_CN" xmlns="http://www.w3.org/1999/html">
+<html lang="zh_CN" xmlns="http://www.w3.org/1999/html" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <title>学生机构设置</title>
@@ -40,6 +40,7 @@
                           <span class="panel-title">
                             <span class="fa fa-table"></span>学生机构设置
                           </span>
+                    </div>
                 </div>
                     <div class="tab-pane active">
                         <div class="col-md-12">
@@ -99,10 +100,12 @@
                                         </label>
                                         <label class="field select">
                                             <select v-model="addStudent.clazz">
-                                                <option value="一班">一班</option>
-                                                <option value="二班">二班</option>
-                                                <option value="三班">三班</option>
-                                                <option value="四班">四班</option>
+                                                <option value="计科一班">计科一班</option>
+                                                <option value="计科二班">计科二班</option>
+                                                <option value="通信一班">通信一班</option>
+                                                <option value="通信二班">通信二班</option>
+                                                <option value="通信三班">通信三班</option>
+                                                <option value="物联一班">物联一班</option>
                                             </select>
                                             <i class="arrow double"></i>
                                         </label>
@@ -147,7 +150,7 @@
         },*/
         methods:{
             submit:function () {
-                this.$http.post(contentPath+"/api/school/save",this.addStudent).then(
+                this.$http.post("/api/school/save",this.addStudent).then(
                     function (response) {
                         sweetAlert("保存成功，该学生的信息已经插入", "该学生的信息已经插入" , "info");
                         window.location.reload();
@@ -157,7 +160,7 @@
                 )
             },
             queryAcademy:function () {
-                this.$http.get(contentPath+"/api/school/queryAcademy").then(
+                this.$http.get("/api/school/queryAcademy").then(
                         function (response) {
                             this.academys=response.data.data;
                         },function (response) {
@@ -166,7 +169,7 @@
                 )
             },
             queryDepartment:function () {
-                this.$http.get(contentPath+"/api/school/queryDepartment",{
+                this.$http.get("/api/school/queryDepartment",{
                     params:{
                         academyName:this.addStudent.academy
                     }

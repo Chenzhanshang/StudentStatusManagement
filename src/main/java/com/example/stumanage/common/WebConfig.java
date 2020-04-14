@@ -27,7 +27,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		converter.setFastJsonConfig(jsonConfig);
 		return converter;
 	}
-
+/*
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
@@ -36,5 +36,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addInterceptor(new IdentityInterceptor()).excludePathPatterns("/admin/login")
 		.excludePathPatterns("/api/admin/find");
     }
+
+ */
 
 }

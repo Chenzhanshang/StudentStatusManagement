@@ -40,9 +40,11 @@
                         </div>
                         <div class="panel-footer clearfix">
                             <div>
+                                <!--
                                 <div class="pull-left">
                                     <button data-toggle="modal" data-target="#myModald"  class="button btn-primary"></button>
                                 </div>
+                                -->
                                 <div class="pull-right">
                                     <button class="button btn-primary block" @click="login(admin)">登录</button>
                                 </div>
@@ -54,8 +56,8 @@
     </section>
 </div>
 <#include 'include/footer_js.ftl'/>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<!-- 注册功能暂时不用
+<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -113,7 +115,9 @@
             </div>
         </div>
     </div>
+
 </div>
+    -->
 <script src="<@s.url '/assets/js/jquery.pagination.min.js'/>"></script>
 <script src="<@s.url '/assets/plugins/ueditor/ueditor.config.js'/>"></script>
 <script src="<@s.url '/assets/plugins/ueditor/ueditor.all.min.js'/>"></script>
@@ -132,7 +136,7 @@
                 if (this.admin.userName === "" || this.admin.passWord === "") {
                     sweetAlert("账号密码不能为空", "请输入账号和密码", "info");
                 } else {
-                    this.$http.post(contentPath + "/api/admin/find",admin).then(
+                    this.$http.post("/api/admin/find",admin).then(
                             function (response) {
                                 if (response.data.code === 1000) {
                                     sweetAlert("登陆失败", response.data.message, "info");
@@ -141,7 +145,7 @@
                                     sweetAlert("登陆失败", response.data.message, "info");
                                 } else {
                                     sweetAlert("登陆成功", "即将跳转首页", "info");
-                                    window.location.href = "http://localhost:8080/stumanage/admin/index"
+                                    window.location.href = "http://localhost:8080/admin/index"
                                 }
                             }, function (response) {
                                 sweetAlert(response.data.message, "错误码" + response.data.code, "error");

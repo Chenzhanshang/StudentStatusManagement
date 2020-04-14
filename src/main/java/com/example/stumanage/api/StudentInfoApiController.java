@@ -5,10 +5,10 @@ import com.example.stumanage.vo.TbAdminVo;
 import com.github.pagehelper.PageInfo;
 import com.example.stumanage.service.StudentInfoService;
 import com.example.stumanage.vo.TbStudentInfoVo;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
